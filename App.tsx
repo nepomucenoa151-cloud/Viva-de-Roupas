@@ -29,16 +29,17 @@ const Logo = ({ className = "" }: { className?: string }) => (
 
 const ImageCarousel = () => {
   const images = [
-    "https://i.ibb.co/spJ1J4Qy/44443.jpg",
-    "https://i.ibb.co/0yKcyLR9/67676.jpg",
-    "https://i.ibb.co/ksNQdfRp/545454.jpg",
-    "https://i.ibb.co/CppFKJfH/555555.jpg",
-    "https://i.ibb.co/4wK0WS5s/2222444.jpg",
-    "https://i.ibb.co/YFXtZ5dm/233.jpg",
-    "https://i.ibb.co/fY7RxpW7/1221.jpg",
-    "https://i.ibb.co/fYcwMRnw/3333.jpg",
-    "https://i.ibb.co/LdLpKhPt/4444.jpg",
-    "https://i.ibb.co/rRssqyTs/wqwqw.jpg"
+    "https://i.ibb.co/GQ8pVXJ8/1221.jpg",
+    "https://i.ibb.co/Rk9r5CpZ/3333.jpg",
+    "https://i.ibb.co/KcVD9Fy5/4444.jpg",
+    "https://i.ibb.co/gFPYsjvV/34434.jpg",
+    "https://i.ibb.co/1YZ5KB9R/44443.jpg",
+    "https://i.ibb.co/BHDYFnM8/67676.jpg",
+    "https://i.ibb.co/0dLGLXy/545454.jpg",
+    "https://i.ibb.co/QWJPcdV/555555.jpg",
+    "https://i.ibb.co/rGqcpvKm/Whats-App-Image-2026-01-22-at-23-14-17.jpg",
+    "https://i.ibb.co/vrXvb1P/Whats-App-Image-2026-01-22-at-23-14-1755.jpg",
+    "https://i.ibb.co/LD94cWXF/q6.jpg"
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -319,22 +320,19 @@ function App() {
               <p>Um lugar seguro, com fornecedores testados, informações organizadas, e tudo pronto pra facilitar a vida de quem quer começar com o pé direito.</p>
               <p>Hoje, mais de <span className="text-[#EAB308] font-black">10 mil empreendedoras</span> usam o Guia pra revender moda feminina com confiança.</p>
             </div>
-          </div>
 
-          {/* Image Side - Now Below Text and Smaller */}
-          <div className="flex justify-center mt-12 mb-8">
-            <div className="relative w-full max-w-[320px]">
-              <div className="absolute inset-0 bg-[#EAB308]/10 rounded-[32px] rotate-3 -z-10"></div>
+            {/* Imagem solicitada abaixo do texto - Tamanho Médio */}
+            <div className="flex justify-center md:justify-start mt-4">
               <img 
-                src="https://i.ibb.co/BVPgtQcs/Chat-GPT-Image-1-de-jan-de-2026-21-19-56.png" 
-                className="w-full h-auto object-cover rounded-[32px] shadow-2xl border-4 border-white transition-transform duration-700 hover:scale-[1.02]" 
-                alt="Gabrieli - Fundadora" 
+                src="https://i.ibb.co/spzppnSZ/Chat-GPT-Image-29-de-dez-de-2025-23-01-26.png" 
+                className="w-full max-w-[320px] h-auto rounded-2xl shadow-lg border border-gray-100" 
+                alt="Resultado e Sucesso" 
               />
             </div>
           </div>
 
-          {/* CTA Section */}
-          <div className="w-full max-w-2xl text-center space-y-8">
+          {/* CTA Section - Ajustado para vir logo após o texto */}
+          <div className="w-full max-w-2xl text-center space-y-8 mt-12">
             <p className="font-bold text-gray-900 text-lg leading-tight">Agora, quero te ajudar a dar esse primeiro passo também.</p>
             
             <div className="flex flex-col items-center gap-4">
@@ -354,12 +352,12 @@ function App() {
 
       <div className="bg-[#F2F2F2] py-16 text-center border-y border-gray-200">
         <div className="flex flex-col gap-12 px-4 max-w-4xl mx-auto">
-          {/* Plano Básico */}
+          {/* PACOTE BÁSICO */}
           <div className="max-w-sm mx-auto w-full relative group">
             <div className="relative bg-white rounded-[40px] p-1 shadow-lg transform transition-all duration-500 hover:-translate-y-3">
               <div className="bg-white rounded-[38px] border-[6px] border-gray-200 py-8 px-6">
                 <div className="flex flex-col items-center mb-8">
-                  <div className="border-[4px] border-gray-200 px-6 py-2.5 rounded-2xl text-xl font-black text-gray-800 uppercase tracking-tight">Plano Básico</div>
+                  <div className="border-[4px] border-gray-200 px-6 py-2.5 rounded-2xl text-xl font-black text-gray-800 uppercase tracking-tight">PACOTE BÁSICO</div>
                 </div>
                 <div className="text-center mb-6 bg-gray-50 rounded-3xl py-4 px-6 border border-gray-200">
                   <p className="text-[11px] line-through text-gray-400 font-black">De: R$ 47,00</p>
@@ -369,7 +367,7 @@ function App() {
                   </div>
                 </div>
 
-                {/* BENEFÍCIOS PLANO BÁSICO - LETRAS LEGÍVEIS */}
+                {/* BENEFÍCIOS PACOTE BÁSICO - LETRAS LEGÍVEIS */}
                 <div className="mt-4 w-full bg-gray-50 rounded-2xl p-5 text-left space-y-3 mb-6 border border-gray-200 shadow-sm">
                   <p className="text-sm text-gray-800 font-bold leading-tight flex items-start gap-2">
                     <span className="text-base flex-shrink-0">📑</span> 
@@ -386,7 +384,7 @@ function App() {
             </div>
           </div>
 
-          {/* Plano Completo */}
+          {/* PACOTE COMPLETO */}
           <div className="max-w-sm mx-auto w-full relative group">
             <div className="absolute -inset-2 bg-gradient-to-r from-transparent via-[#EAB308] to-transparent rounded-[40px] blur-xl opacity-40 group-hover:opacity-100 transition duration-1000"></div>
             <div className="relative bg-white rounded-[40px] p-1 shadow-2xl transform transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_0_40px_rgba(234,179,8,0.3)]">
@@ -399,7 +397,7 @@ function App() {
 
                 <div className="flex flex-col items-center mb-8">
                   {/* BORDA DOURADA REFORÇADA NO TÍTULO */}
-                  <div className="border-[4px] border-[#EAB308] px-6 py-2.5 rounded-2xl text-xl font-black text-[#22C55E] uppercase tracking-tighter bg-[#FCF5E8]/50">Plano Completo!</div>
+                  <div className="border-[4px] border-[#EAB308] px-6 py-2.5 rounded-2xl text-xl font-black text-[#22C55E] uppercase tracking-tighter bg-[#FCF5E8]/50">PACOTE COMPLETO</div>
                 </div>
                 <div className="text-center mb-6 bg-gray-50 rounded-3xl py-6 px-6 border-[3px] border-[#EAB308] shadow-[0_0_20px_rgba(234,179,8,0.2)]">
                   <p className="text-[11px] line-through text-gray-400 font-black uppercase">De: R$ 97,00</p>
@@ -435,7 +433,7 @@ function App() {
                 </div>
 
                 <a href="https://pay.cakto.com.br/c9rruds_618312" className="cta-pulse bg-[#22C55E] hover:bg-[#16A34A] text-white font-black py-5 px-6 rounded-[24px] shadow-[0_8px_0_rgb(22,101,52)] active:translate-y-2 transition-all w-full text-lg uppercase no-underline flex items-center justify-center gap-2 group">
-                  QUERO O PLANO COMPLETO <i className="fa-solid fa-crown text-[#EAB308]"></i>
+                  QUERO O PACOTE COMPLETO <i className="fa-solid fa-crown text-[#EAB308]"></i>
                 </a>
                 <p className="text-[10px] text-gray-400 font-bold text-center uppercase tracking-widest mt-3 opacity-60">Acesso imediato ao portal das alunas</p>
               </div>
@@ -450,7 +448,7 @@ function App() {
           <div className="space-y-10">
             {[
               { q: "Essa lista serve para quem nunca trabalhou com revenda?", a: "Sim. A lista é feita pra iniciantes que querem começar do zero." },
-              { q: "Os fornecedores são confiáveis?", a: "Sim. São fornecedores testados, com baixo investimento inicial." }
+              { q: "Os fornecedores são confiáveis?", a: "Sim. São fornecedores testados, with baixo investimento inicial." }
             ].map((faq, i) => (
               <div key={i} className="border-b border-gray-50 pb-8 last:border-0">
                 <h3 className="text-base font-black text-gray-900 mb-2">{faq.q}</h3>

@@ -29,17 +29,15 @@ const Logo = ({ className = "" }: { className?: string }) => (
 
 const ImageCarousel = () => {
   const images = [
-    "https://i.ibb.co/GQ8pVXJ8/1221.jpg",
-    "https://i.ibb.co/Rk9r5CpZ/3333.jpg",
-    "https://i.ibb.co/KcVD9Fy5/4444.jpg",
-    "https://i.ibb.co/gFPYsjvV/34434.jpg",
-    "https://i.ibb.co/1YZ5KB9R/44443.jpg",
-    "https://i.ibb.co/BHDYFnM8/67676.jpg",
-    "https://i.ibb.co/0dLGLXy/545454.jpg",
-    "https://i.ibb.co/QWJPcdV/555555.jpg",
-    "https://i.ibb.co/rGqcpvKm/Whats-App-Image-2026-01-22-at-23-14-17.jpg",
-    "https://i.ibb.co/vrXvb1P/Whats-App-Image-2026-01-22-at-23-14-1755.jpg",
-    "https://i.ibb.co/LD94cWXF/q6.jpg"
+    "https://i.ibb.co/9knM7J6x/1221.jpg",
+    "https://i.ibb.co/nMkzzTpf/3333.jpg",
+    "https://i.ibb.co/pjZLp9G0/4444.jpg",
+    "https://i.ibb.co/Txh6hfPy/22222.jpg",
+    "https://i.ibb.co/Z1HVVqR6/34434.jpg",
+    "https://i.ibb.co/pjP7jc8J/545454.jpg",
+    "https://i.ibb.co/5XPdk441/Whats-App-Image-2026-01-22-at-23-14-17.jpg",
+    "https://i.ibb.co/zVNLLFbg/Whats-App-Image-2026-01-22-at-23-14-1755.jpg",
+    "https://i.ibb.co/TDCBDT1n/q6.jpg"
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -321,12 +319,12 @@ function App() {
               <p>Hoje, mais de <span className="text-[#EAB308] font-black">10 mil empreendedoras</span> usam o Guia pra revender moda feminina com confiança.</p>
             </div>
 
-            {/* Imagem solicitada abaixo do texto - Tamanho Médio */}
+            {/* Imagem solicitada abaixo do texto - Atualizada */}
             <div className="flex justify-center md:justify-start mt-4">
               <img 
-                src="https://i.ibb.co/spzppnSZ/Chat-GPT-Image-29-de-dez-de-2025-23-01-26.png" 
+                src="https://i.ibb.co/Lzt5cnZ4/Chat-GPT-Image-1-de-jan-de-2026-21-19-56.png" 
                 className="w-full max-w-[320px] h-auto rounded-2xl shadow-lg border border-gray-100" 
-                alt="Resultado e Sucesso" 
+                alt="Gabrieli - Resultado e Sucesso" 
               />
             </div>
           </div>

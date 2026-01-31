@@ -280,6 +280,15 @@ const FAQ = () => (
 );
 
 export default function App() {
+  const [basicDiscountUnlocked, setBasicDiscountUnlocked] = useState(false);
+
+  const handleBasicClick = (e: React.MouseEvent) => {
+    if (!basicDiscountUnlocked) {
+      e.preventDefault();
+      setBasicDiscountUnlocked(true);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 pb-20 overflow-x-hidden text-gray-900 font-montserrat">
       <Hero />
@@ -290,21 +299,51 @@ export default function App() {
       {/* Pricing Section */}
       <div className="bg-[#F2F2F2] py-16 text-center border-y border-gray-200">
         <div className="flex flex-col gap-12 px-4 max-w-4xl mx-auto">
-          {/* PACOTE BÁSICO */}
-          <div className="max-w-sm mx-auto w-full bg-white rounded-[40px] p-8 shadow-lg border border-black/10 transform transition-all hover:-translate-y-2">
-            <h3 className="font-black text-xl mb-4 tracking-tighter">PACOTE BÁSICO</h3>
+          {/* PACOTE BÁSICO / AGORA COM SUPER BONUS DINÂMICO */}
+          <div className={`max-w-sm mx-auto w-full bg-white rounded-[40px] p-8 shadow-lg border transition-all duration-700 transform ${basicDiscountUnlocked ? 'border-[#EAB308] scale-105 shadow-2xl' : 'border-black/10 hover:-translate-y-2'}`}>
+            {basicDiscountUnlocked && (
+              <div className="bg-red-600 text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest mb-4 animate-bounce inline-block">🎁 SUPER BÔNUS LIBERADO!</div>
+            )}
+            
+            <h3 className={`font-black text-xl mb-4 tracking-tighter ${basicDiscountUnlocked ? 'text-red-600' : ''}`}>
+              {basicDiscountUnlocked ? 'PACOTE PLUS!' : 'PACOTE BÁSICO'}
+            </h3>
+            
             <div className="mb-6">
-              <p className="text-xs line-through text-gray-400">De: R$ 47,00</p>
+              <p className="text-xs line-through text-gray-400">
+                De: R$ {basicDiscountUnlocked ? '37,00' : '47,00'}
+              </p>
               <div className="flex items-center justify-center gap-1">
                 <span className="font-bold text-lg self-start mt-2">R$</span>
-                <p className="text-5xl font-black">14,90</p>
+                <p className={`text-5xl font-black transition-all duration-500 ${basicDiscountUnlocked ? 'text-[#EAB308]' : ''}`}>
+                  {basicDiscountUnlocked ? '24,90' : '14,90'}
+                </p>
               </div>
             </div>
+
             <ul className="text-left space-y-4 mb-8 text-sm font-bold text-gray-600">
-              <li className="flex items-center gap-2"><i className="fa-solid fa-check text-green-500"></i> Acesso à lista completa</li>
-              <li className="flex items-center gap-2"><i className="fa-solid fa-check text-green-500"></i> Garantia de 7 dias</li>
+              <li className="flex items-center gap-2">
+                <i className={`fa-solid fa-check ${basicDiscountUnlocked ? 'text-[#EAB308]' : 'text-green-500'}`}></i> 
+                {basicDiscountUnlocked ? 'Acesso a TODO CONTEÚDO + BÔNUS🎁' : 'Acesso à lista completa'}
+              </li>
+              <li className="flex items-center gap-2">
+                <i className={`fa-solid fa-check ${basicDiscountUnlocked ? 'text-[#EAB308]' : 'text-green-500'}`}></i> 
+                Garantia de 7 dias
+              </li>
+              {basicDiscountUnlocked && (
+                <li className="flex items-center gap-2 text-red-600 font-black italic animate-pulse uppercase text-xs">
+                  <i className="fa-solid fa-bolt"></i> Oferta Única e Exclusiva!
+                </li>
+              )}
             </ul>
-            <a href="https://pay.cakto.com.br/c9rruds_618312" className="block w-full bg-[#22C55E] text-white font-black py-5 rounded-2xl shadow-[0_4px_0_rgb(22,101,52)] active:translate-y-1 active:shadow-none transition-all uppercase tracking-tight no-underline">TENHA ACESSSO AGORA!</a>
+
+            <a 
+              href={basicDiscountUnlocked ? "https://pay.cakto.com.br/fwvadyt" : "https://pay.cakto.com.br/c9rruds_618312"} 
+              onClick={handleBasicClick}
+              className={`block w-full text-white font-black py-5 rounded-2xl transition-all uppercase tracking-tight no-underline ${basicDiscountUnlocked ? 'bg-[#22C55E] cta-pulse shadow-[0_4px_0_rgb(22,101,52)]' : 'bg-[#22C55E] shadow-[0_4px_0_rgb(22,101,52)] active:translate-y-1 active:shadow-none'}`}>
+              TENHA ACESSSO AGORA!
+            </a>
+            
             <p className="mt-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center justify-center gap-2">
               <i className="fa-solid fa-shield-halved text-green-600"></i> Acesso 100% seguro e imediato
             </p>

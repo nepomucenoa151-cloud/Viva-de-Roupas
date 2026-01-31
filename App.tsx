@@ -99,9 +99,14 @@ const Hero = () => (
        className="cta-pulse bg-[#22C55E] hover:bg-[#16A34A] text-white font-extrabold py-5 px-8 rounded-lg shadow-[0_4px_0_rgb(22,101,52)] active:shadow-none active:translate-y-1 transition-all w-full text-xl uppercase flex items-center justify-center gap-2 no-underline">
       TENHA ACESSO HOJE! <i className="fa-solid fa-lock"></i>
     </a>
-    <p className="mt-4 text-xs font-bold text-gray-500 uppercase tracking-widest flex items-center justify-center gap-2">
-      <i className="fa-solid fa-shield-halved text-green-600"></i> Acesso 100% seguro e imediato
-    </p>
+    <div className="mt-6 text-center max-w-xs mx-auto">
+      <p className="text-[14px] font-black text-gray-900 flex items-center justify-center gap-2 mb-1">
+        ✅ Compra Segura – Isso NÃO é golpe
+      </p>
+      <p className="text-[11px] font-bold text-gray-500 italic leading-tight uppercase tracking-tight">
+        “Risco zero. Ou funciona pra você, ou devolvemos seu dinheiro.”
+      </p>
+    </div>
   </Section>
 );
 
@@ -210,6 +215,9 @@ const BonusSection = () => (
         className="cta-pulse-orange bg-[#FF4D00] hover:bg-[#FF3D00] text-white font-black py-5 px-8 rounded-full w-full uppercase flex items-center justify-center gap-3 no-underline shadow-lg">
         <i className="fa-solid fa-gift"></i> QUERO ACESSO AGORA!
       </a>
+      <p className="mt-4 text-[13px] font-black text-white flex items-center justify-center gap-2 opacity-90">
+        ✅ Compra Segura – Isso NÃO é golpe
+      </p>
     </Section>
   </div>
 );
@@ -371,6 +379,22 @@ export default function App() {
             <p className="mt-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center justify-center gap-2">
               <i className="fa-solid fa-shield-halved text-green-600"></i> Acesso 100% seguro e imediato
             </p>
+          </div>
+        </div>
+
+        {/* Guarantee Section Below Pricing Cards */}
+        <div className="mt-16 max-w-xl mx-auto px-6 text-left bg-white/50 p-8 rounded-[40px] border border-gray-200 shadow-sm">
+          <h4 className="font-black text-gray-900 mb-6 flex items-center gap-3 text-lg leading-tight">
+            <span className="text-xl">🔒</span> Política de Devolução – Garantia de 7 Dias
+          </h4>
+          <div className="text-sm text-gray-600 space-y-4 font-semibold leading-relaxed">
+            <p>Nós confiamos no que entregamos.</p>
+            <p>Por isso, você tem 7 dias de garantia incondicional, conforme o Código de Defesa do Consumidor.</p>
+            <p>
+              <span className="text-lg">👉</span> Se dentro desse prazo você achar que o material não é para você, basta solicitar o reembolso e devolvemos 100% do valor pago.
+            </p>
+            <p className="text-gray-900 font-bold italic">Sem perguntas. Sem enrolação.</p>
+            <p>O acesso é digital e imediato, e o reembolso é feito pelo mesmo meio de pagamento utilizado.</p>
           </div>
         </div>
       </div>

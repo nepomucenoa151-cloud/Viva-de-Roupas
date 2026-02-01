@@ -55,7 +55,7 @@ const ImageCarousel = () => {
           alt={`Fornecedor ${currentIndex + 1}`} 
           className="w-full h-full object-cover transition-all duration-500 ease-in-out"
         />
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/40 to-transparent"></div>
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-t-t from-black/40 to-transparent"></div>
       </div>
 
       <button onClick={prevSlide} className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 hover:bg-white text-gray-800 rounded-full flex items-center justify-center shadow-lg transition-transform active:scale-90 z-20">
@@ -153,14 +153,14 @@ const Features = () => (
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
         {[
-          "https://i.ibb.co/C5D4F0W2/Captura-de-tela-2025-10-12-140837.png",
-          "https://i.ibb.co/3yPQQYVQ/Captura-de-tela-2025-10-12-140903.png",
-          "https://i.ibb.co/NgpC2nvR/Captura-de-tela-2025-10-12-140952.png",
-          "https://i.ibb.co/PvCghXKN/depoimento.png"
-        ].map((src, index) => (
-          <div key={index} className="overflow-hidden rounded-xl shadow-sm border border-black/10">
-            <img src={src} alt={`Resultado ${index + 1}`} className="w-full h-auto object-cover" />
-          </div>
+          { src: "https://i.ibb.co/bjZzYyMc/depoimento.png", link: "https://ibb.co/fV54ZKzj" },
+          { src: "https://i.ibb.co/CK5YfFfg/Captura-de-tela-2025-10-12-140952.png", link: "https://ibb.co/hFR4SvSb" },
+          { src: "https://i.ibb.co/4q5bqDJ/Captura-de-tela-2025-10-12-140903.png", link: "https://ibb.co/DJSBJ6L" },
+          { src: "https://i.ibb.co/TMyTz7XG/Captura-de-tela-2025-10-12-140837.png", link: "https://ibb.co/tpRhyvf6" }
+        ].map((item, index) => (
+          <a key={index} href={item.link} target="_blank" rel="noopener noreferrer" className="block overflow-hidden rounded-xl shadow-sm border border-black/10 transition-transform hover:scale-[1.02]">
+            <img src={item.src} alt={`Resultado ${index + 1}`} className="w-full h-auto object-cover border-black/5" />
+          </a>
         ))}
       </div>
 

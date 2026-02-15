@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // --- COMPONENTES AUXILIARES ---
 
@@ -289,6 +289,18 @@ const FAQ = () => (
 
 export default function App() {
   const [basicDiscountUnlocked, setBasicDiscountUnlocked] = useState(false);
+
+  useEffect(() => {
+    // Meta Pixel initialization with Manual Advanced Matching
+    const fbq = (window as any).fbq;
+    if (typeof fbq === 'function') {
+      fbq('init', '985004507149963', {
+        em: 'email@email.com',
+        ph: '1234567890'
+      });
+      fbq('track', 'PageView');
+    }
+  }, []);
 
   const handleBasicClick = (e: React.MouseEvent) => {
     if (!basicDiscountUnlocked) {

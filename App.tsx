@@ -291,14 +291,33 @@ export default function App() {
   const [basicDiscountUnlocked, setBasicDiscountUnlocked] = useState(false);
 
   useEffect(() => {
-    // Meta Pixel initialization with Manual Advanced Matching
-    const fbq = (window as any).fbq;
-    if (typeof fbq === 'function') {
-      fbq('init', '985004507149963', {
+    // Meta Pixel Setup Logic within useEffect to ensure Client-Side only execution
+    if (typeof window !== 'undefined') {
+      const w = window as any;
+      if (!w.fbq) {
+        w.fbq = function() {
+          w.fbq.callMethod ? w.fbq.callMethod.apply(w.fbq, arguments) : w.fbq.queue.push(arguments);
+        };
+        if (!w._fbq) w._fbq = w.fbq;
+        w.fbq.push = w.fbq;
+        w.fbq.loaded = true;
+        w.fbq.version = '2.0';
+        w.fbq.queue = [];
+        const t = document.createElement('script');
+        t.async = true;
+        t.src = 'https://connect.facebook.net/en_US/fbevents.js';
+        const s = document.getElementsByTagName('script')[0];
+        if (s && s.parentNode) {
+          s.parentNode.insertBefore(t, s);
+        }
+      }
+
+      // STRICT INITIALIZATION as requested
+      w.fbq('init', '985004507149963', {
         em: 'email@email.com',
         ph: '1234567890'
       });
-      fbq('track', 'PageView');
+      w.fbq('track', 'PageView');
     }
   }, []);
 

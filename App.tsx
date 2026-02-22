@@ -73,6 +73,45 @@ const ImageCarousel = () => {
   );
 };
 
+const CountdownTimer = () => {
+  const [timeLeft, setTimeLeft] = useState({
+    hours: 23,
+    minutes: 59,
+    seconds: 59
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 };
+        if (prev.minutes > 0) return { ...prev, minutes: prev.minutes - 1, seconds: 59 };
+        if (prev.hours > 0) return { hours: prev.hours - 1, minutes: 59, seconds: 59 };
+        return prev;
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const format = (num: number) => num.toString().padStart(2, '0');
+
+  return (
+    <div className="flex justify-center gap-3 mt-4 mb-8">
+      {[
+        { label: 'HORAS', value: timeLeft.hours },
+        { label: 'MINUTOS', value: timeLeft.minutes },
+        { label: 'SEGUNDOS', value: timeLeft.seconds }
+      ].map((item, i) => (
+        <div key={i} className="flex flex-col items-center">
+          <div className="bg-red-600 text-white text-2xl font-black w-14 h-14 flex items-center justify-center rounded-xl shadow-lg border border-white/10">
+            {format(item.value)}
+          </div>
+          <span className="text-[9px] font-black mt-1.5 text-red-600 tracking-widest">{item.label}</span>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 // --- SEÇÕES PRINCIPAIS ---
 
 const Hero = () => (
@@ -80,24 +119,17 @@ const Hero = () => (
     <div className="flex justify-center mb-10">
       <Logo />
     </div>
-    <h1 className="text-lg md:text-xl font-bold leading-tight mb-6">
-      Tenha acesso aos <span className="text-[#EAB308]">fabricantes de moda feminina</span> confiáveis para dar início ao seu próprio negócio com peças de qualidade e preço baixo.
+    <h1 className="text-3xl md:text-5xl font-black leading-tight mb-6 uppercase italic tracking-tighter">
+      PARE DE PAGAR CARO! <span className="text-[#EAB308]">ACESSE OS FABRICANTES SECRETOS</span> E LUCRE MAIS DE 300%
     </h1>
-    <div className="relative mb-12 flex justify-center">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-[#EAB308]/20 blur-[100px] rounded-full -z-10"></div>
-      <img 
-        src="https://i.ibb.co/3mQXvSh4/Chat-GPT-Image-1-de-jan-de-2026-19-04-01-removebg-preview.png" 
-        alt="Viva de Roupas Destaque" 
-        className="relative z-10 w-full max-md:max-w-xs object-contain transition-all duration-700 hover:scale-[1.05]"
-      />
-    </div>
-    <p className="text-base md:text-lg font-bold mb-4">
-      Aqui você encontra fornecedores de peças a partir de <span className="text-[#EAB308] font-black underline">R$ 7,50</span> pra você começa <span className="text-[#EAB308] font-black underline">hoje mesmo!</span>
+    <p className="text-lg md:text-xl font-bold text-gray-700 mb-8 leading-tight max-w-lg mx-auto">
+      Tenha acesso direto aos maiores fornecedores do Brasil com peças a partir de <span className="text-[#EAB308] font-black">R$ 7,50</span>. <br />
+      Comece sua própria loja hoje mesmo com o estoque mais lucrativo do mercado.
     </p>
     <a 
        href="https://pay.cakto.com.br/c9rruds_618312"
-       className="cta-pulse bg-[#22C55E] hover:bg-[#16A34A] text-white font-extrabold py-5 px-8 rounded-lg shadow-[0_4px_0_rgb(22,101,52)] active:shadow-none active:translate-y-1 transition-all w-full text-xl uppercase flex items-center justify-center gap-2 no-underline">
-      TENHA ACESSO HOJE! <i className="fa-solid fa-lock"></i>
+       className="cta-pulse bg-[#22C55E] hover:bg-[#16A34A] text-white font-extrabold py-5 px-8 rounded-lg shadow-[0_4px_0_rgb(22,101,52)] active:shadow-none active:translate-y-1 transition-all w-full text-xl uppercase flex items-center justify-center gap-2 no-underline mb-6">
+      SIM! QUERO COMEÇAR AGORA <i className="fa-solid fa-bolt"></i>
     </a>
     <div className="mt-6 text-center max-w-xs mx-auto">
       <p className="text-[14px] font-black text-gray-900 flex items-center justify-center gap-2 mb-1">
@@ -146,20 +178,23 @@ const Features = () => (
       </div>
 
       <div className="mt-16 mb-8">
-        <h3 className="text-xl md:text-2xl font-black uppercase italic tracking-tight leading-tight">
-          Quem usa o <span className="text-[#EAB308]">VIVA DE ROUPAS</span> tem esses resultados:
+        <h3 className="text-2xl md:text-3xl font-black uppercase italic tracking-tight leading-tight mb-4">
+          Quem já comprou, <span className="text-[#EAB308]">recomenda!</span>
         </h3>
+        <p className="text-gray-600 text-sm font-bold italic">
+          Veja os resultados reais de quem já está faturando:
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+      <div className="grid grid-cols-2 md:grid-cols-2 gap-4 mt-8">
         {[
           { src: "https://i.ibb.co/bjZzYyMc/depoimento.png", link: "https://ibb.co/fV54ZKzj" },
           { src: "https://i.ibb.co/CK5YfFfg/Captura-de-tela-2025-10-12-140952.png", link: "https://ibb.co/hFR4SvSb" },
           { src: "https://i.ibb.co/4q5bqDJ/Captura-de-tela-2025-10-12-140903.png", link: "https://ibb.co/DJSBJ6L" },
           { src: "https://i.ibb.co/TMyTz7XG/Captura-de-tela-2025-10-12-140837.png", link: "https://ibb.co/tpRhyvf6" }
         ].map((item, index) => (
-          <a key={index} href={item.link} target="_blank" rel="noopener noreferrer" className="block overflow-hidden rounded-xl shadow-sm border border-black/10 transition-transform hover:scale-[1.02]">
-            <img src={item.src} alt={`Resultado ${index + 1}`} className="w-full h-auto object-cover border-black/5" />
+          <a key={index} href={item.link} target="_blank" rel="noopener noreferrer" className="block overflow-hidden rounded-[24px] shadow-xl border border-black/5 transition-all duration-300 hover:scale-[1.05] hover:shadow-2xl">
+            <img src={item.src} alt={`Resultado ${index + 1}`} className="w-full h-auto object-cover" />
           </a>
         ))}
       </div>
@@ -213,7 +248,7 @@ const BonusSection = () => (
       <a 
         href="https://pay.cakto.com.br/c9rruds_618312"
         className="cta-pulse-orange bg-[#FF4D00] hover:bg-[#FF3D00] text-white font-black py-5 px-8 rounded-full w-full uppercase flex items-center justify-center gap-3 no-underline shadow-lg">
-        <i className="fa-solid fa-gift"></i> QUERO ACESSO AGORA!
+        <i className="fa-solid fa-gift"></i> SIM! QUERO COMEÇAR AGORA
       </a>
       <p className="mt-4 text-[13px] font-black text-white flex items-center justify-center gap-2 opacity-90">
         ✅ Compra Segura – Isso NÃO é golpe
@@ -260,7 +295,7 @@ const FounderBio = () => (
       <a 
         href="https://pay.cakto.com.br/c9rruds_618312"
         className="mt-12 cta-pulse bg-[#22C55E] hover:bg-[#16A34A] text-white font-bold py-5 px-10 rounded-full uppercase text-sm tracking-widest no-underline shadow-xl transition-all flex items-center gap-3">
-        QUERO ACESSO HOJE! <i className="fa-solid fa-arrow-right"></i>
+        SIM! QUERO COMEÇAR AGORA <i className="fa-solid fa-arrow-right"></i>
       </a>
       <p className="mt-4 text-xs font-bold text-gray-500 uppercase tracking-widest flex items-center justify-center gap-2">
         <i className="fa-solid fa-shield-halved text-green-600"></i> Acesso 100% seguro e imediato
@@ -269,19 +304,36 @@ const FounderBio = () => (
   </div>
 );
 
+const FAQItem = ({ q, a }: { q: string, a: string, key?: React.Key }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors"
+      >
+        <h3 className="font-bold text-gray-900 pr-4">{q}</h3>
+        <i className={`fa-solid fa-chevron-down text-[#EAB308] transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}></i>
+      </button>
+      <div className={`px-6 transition-all duration-300 ease-in-out ${isOpen ? 'pb-6 max-h-96 opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
+        <p className="text-sm text-gray-500 leading-relaxed">{a}</p>
+      </div>
+    </div>
+  );
+};
+
 const FAQ = () => (
   <Section className="py-20">
     <h2 className="text-3xl font-black italic text-gray-900 mb-10 uppercase text-center">DÚVIDAS FREQUENTES</h2>
-    <div className="space-y-6">
+    <div className="space-y-4">
       {[
         { q: "Essa lista serve para quem nunca trabalhou com revenda?", a: "Sim. A lista é feita pra iniciantes que querem começar do zero." },
         { q: "Os fornecedores são confiáveis?", a: "Sim. Todos os fornecedores são testados e possuem anos de mercado." },
-        { q: "Como recebo o acesso?", a: "Imediatamente após a confirmação do pagamento, os dados chegam no seu e-mail." }
+        { q: "Como recebo o acesso?", a: "Imediatamente após a confirmação do pagamento, os dados chegam no seu e-mail." },
+        { q: "Quais as formas de pagamento?", a: "Aceitamos Cartão de Crédito (com parcelamento), Pix e Boleto Bancário." },
+        { q: "Por quanto tempo terei acesso?", a: "O acesso é vitalício! Você paga uma única vez e pode consultar sempre que precisar." }
       ].map((faq, i) => (
-        <div key={i} className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
-          <h3 className="font-bold text-gray-900 mb-2">{faq.q}</h3>
-          <p className="text-sm text-gray-500">{faq.a}</p>
-        </div>
+        <FAQItem key={i} q={faq.q} a={faq.a} />
       ))}
     </div>
   </Section>
@@ -336,7 +388,17 @@ export default function App() {
       <FounderBio />
 
       {/* Pricing Section */}
+      <div className="bg-red-600 text-white py-4 px-6 text-center font-black uppercase italic tracking-tighter text-sm md:text-base">
+        ATENÇÃO: Desconto de 50% válido apenas para as próximas 24 horas!
+      </div>
+      
       <div className="bg-[#F2F2F2] py-16 text-center border-y border-gray-200">
+        <div className="max-w-4xl mx-auto px-4 mb-10">
+          <h2 className="text-3xl font-black italic uppercase tracking-tighter mb-2">ESCOLHA SEU PACOTE</h2>
+          <p className="text-gray-600 font-bold text-sm mb-6">Aproveite a oferta antes que o tempo acabe:</p>
+          <CountdownTimer />
+        </div>
+        
         <div className="flex flex-col gap-12 px-4 max-w-4xl mx-auto">
           {/* PACOTE BÁSICO / AGORA COM SUPER BONUS DINÂMICO */}
           <div className={`max-w-sm mx-auto w-full bg-white rounded-[40px] p-8 shadow-lg border transition-all duration-700 transform ${basicDiscountUnlocked ? 'border-[#EAB308] scale-105 shadow-2xl' : 'border-black/10 hover:-translate-y-2'}`}>
@@ -380,7 +442,7 @@ export default function App() {
               href={basicDiscountUnlocked ? "https://pay.cakto.com.br/fwvadyt" : "https://pay.cakto.com.br/c9rruds_618312"} 
               onClick={handleBasicClick}
               className={`block w-full text-white font-black py-5 rounded-2xl transition-all uppercase tracking-tight no-underline ${basicDiscountUnlocked ? 'bg-[#22C55E] cta-pulse shadow-[0_4px_0_rgb(22,101,52)]' : 'bg-[#22C55E] shadow-[0_4px_0_rgb(22,101,52)] active:translate-y-1 active:shadow-none'}`}>
-              TENHA ACESSSO AGORA!
+              SIM! QUERO COMEÇAR AGORA
             </a>
             
             <p className="mt-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center justify-center gap-2">
@@ -406,7 +468,7 @@ export default function App() {
               <li className="flex items-start gap-2"><span>🎁</span> <span><b>BÔNUS 04</b> - Pack de Figurinhas para Story da sua Loja.</span></li>
               <li className="flex items-start gap-2"><span>🚀</span> <span><b>SUPER BÔNUS 05</b> - Aulas Exclusivas para Planejar sua Loja</span></li>
             </ul>
-            <a href="https://pay.cakto.com.br/c9rruds_618312" className="cta-pulse block w-full bg-[#22C55E] text-white font-black py-5 rounded-2xl shadow-[0_4px_0_rgb(22,101,52)] active:translate-y-1 active:shadow-none transition-all uppercase tracking-tight no-underline">QUERO PACOTE COMPLETO AGORA!</a>
+            <a href="https://pay.cakto.com.br/c9rruds_618312" className="cta-pulse block w-full bg-[#22C55E] text-white font-black py-5 rounded-2xl shadow-[0_4px_0_rgb(22,101,52)] active:translate-y-1 active:shadow-none transition-all uppercase tracking-tight no-underline">SIM! QUERO COMEÇAR AGORA</a>
             <p className="mt-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center justify-center gap-2">
               <i className="fa-solid fa-shield-halved text-green-600"></i> Acesso 100% seguro e imediato
             </p>

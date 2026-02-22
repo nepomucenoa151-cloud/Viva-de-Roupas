@@ -16,6 +16,10 @@ const Logo = ({ className = "" }: { className?: string }) => (
         src="https://i.ibb.co/Rp2VzvBJ/Chat-GPT-Image-9-de-jan-de-2026-00-35-43.png" 
         alt="Viva de Roupas Logo" 
         className="w-20 h-20 object-contain"
+        loading="eager"
+        decoding="async"
+        width="80"
+        height="80"
       />
     </div>
     <div className="mt-4 flex flex-col items-center">
@@ -54,6 +58,8 @@ const ImageCarousel = () => {
           src={images[currentIndex]} 
           alt={`Fornecedor ${currentIndex + 1}`} 
           className="w-full h-full object-cover transition-all duration-500 ease-in-out"
+          loading="lazy"
+          decoding="async"
         />
         <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-t-t from-black/40 to-transparent"></div>
       </div>
@@ -131,12 +137,9 @@ const Hero = () => (
        className="cta-pulse bg-[#22C55E] hover:bg-[#16A34A] text-white font-extrabold py-5 px-8 rounded-lg shadow-[0_4px_0_rgb(22,101,52)] active:shadow-none active:translate-y-1 transition-all w-full text-xl uppercase flex items-center justify-center gap-2 no-underline mb-6">
       SIM! QUERO COMEÇAR AGORA <i className="fa-solid fa-bolt"></i>
     </a>
-    <div className="mt-6 text-center max-w-xs mx-auto">
-      <p className="text-[14px] font-black text-gray-900 flex items-center justify-center gap-2 mb-1">
-        ✅ Compra Segura – Isso NÃO é golpe
-      </p>
-      <p className="text-[11px] font-bold text-gray-500 italic leading-tight uppercase tracking-tight">
-        “Risco zero. Ou funciona pra você, ou devolvemos seu dinheiro.”
+    <div className="mt-6 text-center max-w-sm mx-auto">
+      <p className="text-[12px] font-bold text-gray-600 flex items-center justify-center gap-2">
+        <i className="fa-solid fa-envelope text-[#EAB308]"></i> Acesso imediato enviado para o seu e-mail após a confirmação.
       </p>
     </div>
   </Section>
@@ -194,7 +197,13 @@ const Features = () => (
           { src: "https://i.ibb.co/TMyTz7XG/Captura-de-tela-2025-10-12-140837.png", link: "https://ibb.co/tpRhyvf6" }
         ].map((item, index) => (
           <a key={index} href={item.link} target="_blank" rel="noopener noreferrer" className="block overflow-hidden rounded-[24px] shadow-xl border border-black/5 transition-all duration-300 hover:scale-[1.05] hover:shadow-2xl">
-            <img src={item.src} alt={`Resultado ${index + 1}`} className="w-full h-auto object-cover" />
+            <img 
+              src={item.src} 
+              alt={`Resultado ${index + 1}`} 
+              className="w-full h-auto object-cover" 
+              loading="lazy"
+              decoding="async"
+            />
           </a>
         ))}
       </div>
@@ -250,8 +259,8 @@ const BonusSection = () => (
         className="cta-pulse-orange bg-[#FF4D00] hover:bg-[#FF3D00] text-white font-black py-5 px-8 rounded-full w-full uppercase flex items-center justify-center gap-3 no-underline shadow-lg">
         <i className="fa-solid fa-gift"></i> SIM! QUERO COMEÇAR AGORA
       </a>
-      <p className="mt-4 text-[13px] font-black text-white flex items-center justify-center gap-2 opacity-90">
-        ✅ Compra Segura – Isso NÃO é golpe
+      <p className="mt-4 text-[12px] font-bold text-white flex items-center justify-center gap-2 opacity-90">
+        <i className="fa-solid fa-envelope text-[#EAB308]"></i> Acesso imediato enviado para o seu e-mail após a confirmação.
       </p>
     </Section>
   </div>
@@ -266,6 +275,8 @@ const FounderBio = () => (
         src="https://i.ibb.co/mrRp3Tqv/Chat-GPT-Image-1-de-jan-de-2026-21-19-56.png" 
         className="w-full max-w-[320px] rounded-2xl mb-10 border-4 border-[#EAB308]/20 shadow-xl"
         alt="Gabrieli Fundadora"
+        loading="lazy"
+        decoding="async"
       />
       
       <div className="text-gray-700 space-y-6 text-base md:text-lg leading-relaxed text-left max-w-md mx-auto">
@@ -297,8 +308,8 @@ const FounderBio = () => (
         className="mt-12 cta-pulse bg-[#22C55E] hover:bg-[#16A34A] text-white font-bold py-5 px-10 rounded-full uppercase text-sm tracking-widest no-underline shadow-xl transition-all flex items-center gap-3">
         SIM! QUERO COMEÇAR AGORA <i className="fa-solid fa-arrow-right"></i>
       </a>
-      <p className="mt-4 text-xs font-bold text-gray-500 uppercase tracking-widest flex items-center justify-center gap-2">
-        <i className="fa-solid fa-shield-halved text-green-600"></i> Acesso 100% seguro e imediato
+      <p className="mt-4 text-[12px] font-bold text-gray-600 flex items-center justify-center gap-2">
+        <i className="fa-solid fa-envelope text-[#EAB308]"></i> Acesso imediato enviado para o seu e-mail após a confirmação.
       </p>
     </Section>
   </div>
@@ -445,8 +456,8 @@ export default function App() {
               SIM! QUERO COMEÇAR AGORA
             </a>
             
-            <p className="mt-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center justify-center gap-2">
-              <i className="fa-solid fa-shield-halved text-green-600"></i> Acesso 100% seguro e imediato
+            <p className="mt-4 text-[10px] font-bold text-gray-500 flex items-center justify-center gap-2">
+              <i className="fa-solid fa-envelope text-[#EAB308]"></i> Acesso imediato enviado para o seu e-mail após a confirmação.
             </p>
           </div>
 
@@ -469,8 +480,8 @@ export default function App() {
               <li className="flex items-start gap-2"><span>🚀</span> <span><b>SUPER BÔNUS 05</b> - Aulas Exclusivas para Planejar sua Loja</span></li>
             </ul>
             <a href="https://pay.cakto.com.br/c9rruds_618312" className="cta-pulse block w-full bg-[#22C55E] text-white font-black py-5 rounded-2xl shadow-[0_4px_0_rgb(22,101,52)] active:translate-y-1 active:shadow-none transition-all uppercase tracking-tight no-underline">SIM! QUERO COMEÇAR AGORA</a>
-            <p className="mt-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center justify-center gap-2">
-              <i className="fa-solid fa-shield-halved text-green-600"></i> Acesso 100% seguro e imediato
+            <p className="mt-4 text-[10px] font-bold text-gray-500 flex items-center justify-center gap-2">
+              <i className="fa-solid fa-envelope text-[#EAB308]"></i> Acesso imediato enviado para o seu e-mail após a confirmação.
             </p>
           </div>
         </div>

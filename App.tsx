@@ -381,8 +381,41 @@ export default function App() {
         ph: '1234567890'
       });
       w.fbq('track', 'PageView');
+
+      // --- ADVANCED TRACKING SCRIPT INTEGRATION ---
+      // Função para capturar o cookie _fbp/_fbc
+      const getFacebookCookie = (name: string) => {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop()?.split(';').shift();
+      };
+
+      // Função para aplicar nos botões de compra
+      const prepararLinksDeCompra = () => {
+        const fbp = getFacebookCookie('_fbp');
+        const fbc = getFacebookCookie('_fbc');
+        
+        // Seleciona todos os links que levam para o checkout da Cakto
+        const botoes = document.querySelectorAll('a[href*="cakto.com.br"]');
+        
+        botoes.forEach(botao => {
+          const anchor = botao as HTMLAnchorElement;
+          try {
+            let url = new URL(anchor.href);
+            if (fbp) url.searchParams.set('fbp', fbp);
+            if (fbc) url.searchParams.set('fbc', fbc);
+            anchor.href = url.toString();
+          } catch (e) {
+            console.error("Erro ao processar URL do botão:", e);
+          }
+        });
+      };
+
+      // Executa após um pequeno delay para garantir que o DOM está pronto
+      // e também quando o estado de desconto mudar
+      setTimeout(prepararLinksDeCompra, 500);
     }
-  }, []);
+  }, [basicDiscountUnlocked]);
 
   const handleBasicClick = (e: React.MouseEvent) => {
     if (!basicDiscountUnlocked) {

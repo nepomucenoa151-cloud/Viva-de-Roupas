@@ -17,6 +17,7 @@ const Logo = ({ className = "" }: { className?: string }) => (
         alt="Viva de Roupas Logo" 
         className="w-20 h-20 object-contain"
         loading="eager"
+        fetchPriority="high"
         decoding="async"
         width="80"
         height="80"
@@ -75,6 +76,41 @@ const ImageCarousel = () => {
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest z-20 flex items-center gap-2 border border-white/20">
         <span className="text-[#EAB308]">{currentIndex + 1}</span> / {images.length}
       </div>
+    </div>
+  );
+};
+
+const StickyBar = () => {
+  const [timeLeft, setTimeLeft] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = sessionStorage.getItem('viva_timer');
+      return saved ? parseInt(saved, 10) : 15 * 60;
+    }
+    return 15 * 60;
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        const next = prev > 0 ? prev - 1 : 15 * 60;
+        if (typeof window !== 'undefined') {
+          sessionStorage.setItem('viva_timer', next.toString());
+        }
+        return next;
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  return (
+    <div className="sticky top-0 z-[100] bg-red-600 text-white py-2 px-4 text-center font-black text-xs md:hidden shadow-lg border-b border-white/20">
+      ⚠️ OFERTA EXPIRA EM: <span className="font-mono text-sm">{formatTime(timeLeft)}</span>
     </div>
   );
 };
@@ -142,6 +178,28 @@ const Hero = () => (
         <i className="fa-solid fa-envelope text-[#EAB308]"></i> Acesso imediato enviado para o seu e-mail após a confirmação.
       </p>
     </div>
+
+    <div className="mt-12 pt-8 border-t border-gray-100">
+      <p className="text-xs font-black text-gray-400 uppercase tracking-widest mb-4">
+        Mais de 250 novas empreendedoras começaram hoje!
+      </p>
+      <div className="grid grid-cols-2 gap-3 max-w-xs mx-auto">
+        {[
+          { src: "https://i.ibb.co/bjZzYyMc/depoimento.png", link: "https://ibb.co/fV54ZKzj" },
+          { src: "https://i.ibb.co/CK5YfFfg/Captura-de-tela-2025-10-12-140952.png", link: "https://ibb.co/hFR4SvSb" }
+        ].map((item, index) => (
+          <a key={index} href={item.link} target="_blank" rel="noopener noreferrer" className="block overflow-hidden rounded-xl shadow-lg border border-black/5 transition-all duration-300 hover:scale-[1.02]">
+            <img 
+              src={item.src} 
+              alt={`Depoimento ${index + 1}`} 
+              className="w-full h-auto object-cover" 
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+        ))}
+      </div>
+    </div>
   </Section>
 );
 
@@ -191,8 +249,6 @@ const Features = () => (
 
       <div className="grid grid-cols-2 md:grid-cols-2 gap-4 mt-8">
         {[
-          { src: "https://i.ibb.co/bjZzYyMc/depoimento.png", link: "https://ibb.co/fV54ZKzj" },
-          { src: "https://i.ibb.co/CK5YfFfg/Captura-de-tela-2025-10-12-140952.png", link: "https://ibb.co/hFR4SvSb" },
           { src: "https://i.ibb.co/4q5bqDJ/Captura-de-tela-2025-10-12-140903.png", link: "https://ibb.co/DJSBJ6L" },
           { src: "https://i.ibb.co/TMyTz7XG/Captura-de-tela-2025-10-12-140837.png", link: "https://ibb.co/tpRhyvf6" }
         ].map((item, index) => (
@@ -367,7 +423,7 @@ export default function App() {
         w.fbq.version = '2.0';
         w.fbq.queue = [];
         const t = document.createElement('script');
-        t.async = true;
+        t.defer = true;
         t.src = 'https://connect.facebook.net/en_US/fbevents.js';
         const s = document.getElementsByTagName('script')[0];
         if (s && s.parentNode) {
@@ -383,21 +439,16 @@ export default function App() {
       w.fbq('track', 'PageView');
 
       // --- ADVANCED TRACKING SCRIPT INTEGRATION ---
-      // Função para capturar o cookie _fbp/_fbc
       const getFacebookCookie = (name: string) => {
         const value = `; ${document.cookie}`;
         const parts = value.split(`; ${name}=`);
         if (parts.length === 2) return parts.pop()?.split(';').shift();
       };
 
-      // Função para aplicar nos botões de compra
       const prepararLinksDeCompra = () => {
         const fbp = getFacebookCookie('_fbp');
         const fbc = getFacebookCookie('_fbc');
-        
-        // Seleciona todos os links que levam para o checkout da Cakto
         const botoes = document.querySelectorAll('a[href*="cakto.com.br"]');
-        
         botoes.forEach(botao => {
           const anchor = botao as HTMLAnchorElement;
           try {
@@ -411,9 +462,29 @@ export default function App() {
         });
       };
 
-      // Executa após um pequeno delay para garantir que o DOM está pronto
-      // e também quando o estado de desconto mudar
+      // Intercept clicks to ensure parameters are added even if cookies are set late
+      const handleCaktoClick = (e: MouseEvent) => {
+        const target = (e.target as HTMLElement).closest('a');
+        if (target && target.href && target.href.includes('cakto.com.br')) {
+          const fbp = getFacebookCookie('_fbp');
+          const fbc = getFacebookCookie('_fbc');
+          try {
+            let url = new URL(target.href);
+            if (fbp) url.searchParams.set('fbp', fbp);
+            if (fbc) url.searchParams.set('fbc', fbc);
+            target.href = url.toString();
+          } catch (err) {
+            console.error("Erro ao anexar parâmetros de rastreamento no clique:", err);
+          }
+        }
+      };
+
+      document.addEventListener('click', handleCaktoClick);
       setTimeout(prepararLinksDeCompra, 500);
+
+      return () => {
+        document.removeEventListener('click', handleCaktoClick);
+      };
     }
   }, [basicDiscountUnlocked]);
 
@@ -426,6 +497,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gray-50 pb-20 overflow-x-hidden text-gray-900 font-montserrat">
+      <StickyBar />
       <Hero />
       <Features />
       <BonusSection />
@@ -517,6 +589,12 @@ export default function App() {
               <i className="fa-solid fa-envelope text-[#EAB308]"></i> Acesso imediato enviado para o seu e-mail após a confirmação.
             </p>
           </div>
+        </div>
+
+        <div className="mt-8 px-4">
+          <p className="text-red-600 font-black text-xl uppercase italic animate-pulse">
+            🔥 Restam apenas 7 vagas com este desconto único
+          </p>
         </div>
 
         {/* Guarantee Section Below Pricing Cards */}

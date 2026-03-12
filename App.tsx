@@ -432,10 +432,8 @@ export default function App() {
       }
 
       // STRICT INITIALIZATION as requested
-      w.fbq('init', '985004507149963', {
-        em: 'email@email.com',
-        ph: '1234567890'
-      });
+      w.fbq('set', 'autoConfig', true, '985004507149963'); 
+      w.fbq('init', '985004507149963');
       w.fbq('track', 'PageView');
 
       // --- ADVANCED TRACKING SCRIPT INTEGRATION ---

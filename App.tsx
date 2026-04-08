@@ -161,13 +161,16 @@ const Hero = () => (
     <div className="flex justify-center mb-10">
       <Logo />
     </div>
-    <h1 className="text-3xl md:text-5xl font-black leading-tight mb-6 uppercase italic tracking-tighter">
-      PARE DE PAGAR CARO! <span className="text-[#EAB308]">ACESSE OS FABRICANTES SECRETOS</span> E LUCRE MAIS DE 300%
-    </h1>
-    <p className="text-lg md:text-xl font-bold text-gray-700 mb-8 leading-tight max-w-lg mx-auto">
-      Tenha acesso direto aos maiores fornecedores do Brasil com peças a partir de <span className="text-[#EAB308] font-black">R$ 7,50</span>. <br />
-      Comece sua própria loja hoje mesmo com o estoque mais lucrativo do mercado.
-    </p>
+    
+    <div className="bg-gradient-to-br from-[#2D1B14] to-[#1A2B3C] rounded-[10px] p-6 md:p-10 shadow-2xl mb-8">
+      <h1 className="text-[32px] md:text-[40px] font-bold leading-tight mb-6 uppercase text-white tracking-tight">
+        COMECE SUA PRÓPRIA LOJA HOJE MESMO COM O ESTOQUE MAIS LUCRATIVO DO MERCADO E LUCRE MAIS DE 300%
+      </h1>
+      <p className="text-[18px] md:text-[20px] font-normal text-gray-200 leading-tight max-w-2xl mx-auto">
+        Tenha acesso direto aos maiores fornecedores do Brasil com peças a partir de <span className="text-[#EAB308] font-bold">R$ 7,50</span>.
+      </p>
+    </div>
+
     <a 
        href="https://pay.cakto.com.br/c9rruds_618312"
        className="cta-pulse bg-[#22C55E] hover:bg-[#16A34A] text-white font-extrabold py-5 px-8 rounded-lg shadow-[0_4px_0_rgb(22,101,52)] active:shadow-none active:translate-y-1 transition-all w-full text-xl uppercase flex items-center justify-center gap-2 no-underline mb-6">

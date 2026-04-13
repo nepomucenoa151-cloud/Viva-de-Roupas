@@ -154,75 +154,117 @@ const CountdownTimer = () => {
   );
 };
 
+const TestimonialCarousel = () => {
+  const scrollRef = React.useRef<HTMLDivElement>(null);
+  const images = [
+    "https://i.ibb.co/NgFSXgNL/Captura-de-tela-2025-10-12-140837.png",
+    "https://i.ibb.co/KcL0qKGM/Captura-de-tela-2025-10-12-140903.png",
+    "https://i.ibb.co/1tNbYV3L/Captura-de-tela-2025-10-12-140952.png",
+    "https://i.ibb.co/wZjk5kkM/depoimento.png"
+  ];
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const { scrollLeft, clientWidth } = scrollRef.current;
+      const scrollTo = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
+      scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <div className="relative w-full py-8 group">
+      <div 
+        ref={scrollRef}
+        className="flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-6 px-4"
+      >
+        {images.map((src, index) => (
+          <div key={index} className="flex-shrink-0 w-[240px] md:w-[320px] snap-center">
+            <div className="bg-[#1A1A1A] rounded-[24px] overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.4)] border border-white/10 transform transition-all duration-500 hover:scale-[1.02] hover:border-[#EAB308]/30">
+              <img 
+                src={src} 
+                alt={`Depoimento ${index + 1}`} 
+                className="w-full h-auto object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Navigation Arrows */}
+      <button 
+        onClick={() => scroll('left')}
+        className="absolute left-2 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/60 backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity z-10 hover:bg-[#EAB308] hover:text-black"
+      >
+        <i className="fa-solid fa-chevron-left"></i>
+      </button>
+      <button 
+        onClick={() => scroll('right')}
+        className="absolute right-2 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/60 backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity z-10 hover:bg-[#EAB308] hover:text-black"
+      >
+        <i className="fa-solid fa-chevron-right"></i>
+      </button>
+
+      <div className="flex justify-center gap-3 mt-4">
+        {images.map((_, i) => (
+          <div key={i} className="w-2 h-2 rounded-full bg-[#EAB308]/20 border border-[#EAB308]/10"></div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 // --- SEÇÕES PRINCIPAIS ---
 
 const Hero = () => (
-  <Section className="text-center">
-    <div className="flex justify-center mb-10">
+  <Section className="text-center pt-6 md:pt-20">
+    <div className="flex justify-center mb-12">
       <Logo />
     </div>
     
-    <div className="bg-gradient-to-br from-[#2D1B14] to-[#1A2B3C] rounded-[10px] p-6 md:p-10 shadow-2xl mb-8">
-      <h1 className="text-[32px] md:text-[40px] font-bold leading-tight mb-6 uppercase text-white tracking-tight">
-        COMECE SUA PRÓPRIA LOJA HOJE MESMO COM O ESTOQUE MAIS LUCRATIVO DO MERCADO E LUCRE MAIS DE 300%
+    <div className="max-w-4xl mx-auto">
+      <h1 className="text-[28px] md:text-[52px] font-bold leading-[1.3] mb-6 uppercase text-white tracking-tight">
+        COMECE SUA PRÓPRIA LOJA HOJE MESMO COM O ESTOQUE MAIS LUCRATIVO DO MERCADO E LUCRE MAIS DE <span className="text-[#FF4D00] font-black">300%</span>
       </h1>
-      <p className="text-[18px] md:text-[20px] font-normal text-gray-200 leading-tight max-w-2xl mx-auto">
-        Tenha acesso direto aos maiores fornecedores do Brasil com peças a partir de <span className="text-[#EAB308] font-bold">R$ 7,50</span>.
+      <p className="text-[17px] md:text-[24px] font-normal text-gray-300 leading-[1.6] mb-8 max-w-2xl mx-auto">
+        Tenha acesso direto aos maiores fornecedores do Brasil com peças a partir de <span className="text-[#EAB308] font-black">R$ 7,50</span>.
       </p>
-    </div>
-
-    <a 
-       href="https://pay.cakto.com.br/c9rruds_618312"
-       className="cta-pulse bg-[#22C55E] hover:bg-[#16A34A] text-white font-extrabold py-5 px-8 rounded-lg shadow-[0_4px_0_rgb(22,101,52)] active:shadow-none active:translate-y-1 transition-all w-full text-xl uppercase flex items-center justify-center gap-2 no-underline mb-6">
-      SIM! QUERO COMEÇAR AGORA <i className="fa-solid fa-bolt"></i>
-    </a>
-    <div className="mt-6 text-center max-w-sm mx-auto">
-      <p className="text-[12px] font-bold text-gray-600 flex items-center justify-center gap-2">
-        <i className="fa-solid fa-envelope text-[#EAB308]"></i> Acesso imediato enviado para o seu e-mail após a confirmação.
-      </p>
-    </div>
-
-    <div className="mt-12 pt-8 border-t border-gray-100">
-      <p className="text-xs font-black text-gray-400 uppercase tracking-widest mb-4">
-        Mais de 250 novas empreendedoras começaram hoje!
-      </p>
-      <div className="grid grid-cols-2 gap-3 max-w-xs mx-auto">
-        {[
-          { src: "https://i.ibb.co/bjZzYyMc/depoimento.png", link: "https://ibb.co/fV54ZKzj" },
-          { src: "https://i.ibb.co/CK5YfFfg/Captura-de-tela-2025-10-12-140952.png", link: "https://ibb.co/hFR4SvSb" }
-        ].map((item, index) => (
-          <a key={index} href={item.link} target="_blank" rel="noopener noreferrer" className="block overflow-hidden rounded-xl shadow-lg border border-black/5 transition-all duration-300 hover:scale-[1.02]">
-            <img 
-              src={item.src} 
-              alt={`Depoimento ${index + 1}`} 
-              className="w-full h-auto object-cover" 
-              loading="lazy"
-              decoding="async"
-            />
-          </a>
-        ))}
+      
+      <div className="flex flex-col items-center">
+        <a 
+           href="https://pay.cakto.com.br/c9rruds_618312"
+           className="cta-pulse-orange bg-[#FF4D00] hover:bg-[#E64500] text-white font-extrabold py-5 px-8 md:py-6 md:px-10 rounded-xl shadow-[0_10px_30px_rgba(255,77,0,0.3)] transition-all w-full md:w-auto inline-flex items-center justify-center gap-3 no-underline mb-6 text-lg md:text-2xl uppercase tracking-tighter">
+          QUERO ACESSAR OS FABRICANTES <i className="fa-solid fa-arrow-right"></i>
+        </a>
+        
+        <div className="text-center">
+          <p className="text-[12px] md:text-[13px] font-bold text-gray-500 flex items-center justify-center gap-2">
+            <i className="fa-solid fa-shield-halved text-[#EAB308]"></i> Acesso imediato enviado para o seu e-mail após a confirmação.
+          </p>
+        </div>
       </div>
     </div>
   </Section>
 );
 
 const Features = () => (
-  <div className="bg-gray-100 py-16 border-y border-gray-200">
+  <div className="bg-[#111111] py-16 border-y border-white/5">
     <Section className="max-w-2xl px-4 text-center">
-      <h2 className="text-3xl font-extrabold mb-2 uppercase italic tracking-tighter leading-none">
-        O Que Vai Encontrar No <span className="text-[#EAB308]">VIVA DE ROUPAS</span>?
+      <h2 className="text-xl md:text-3xl font-black text-white uppercase italic mb-2 tracking-tighter leading-tight">
+        O Que Vai Encontrar No <br />
+        <span className="text-[#EAB308]">VIVA DE ROUPAS?</span>
       </h2>
-      <p className="text-gray-600 text-sm font-semibold mb-8 max-w-sm mx-auto leading-tight">
-        Conheça agora alguns modelos dos Fornecedores mais desejados, que você encontra no VIVA DE ROUPAS
+      <p className="text-gray-400 text-[10px] md:text-xs font-bold mb-1 uppercase tracking-widest">
+        ALGUNS DOS MODELOS DAS ROUPAS DOS FORNECEDORES
+      </p>
+      <p className="text-white text-[10px] md:text-xs font-medium mb-8 opacity-90">
+        Essas variedades de Roupas para todo gosto Feminino.
       </p>
       
       <ImageCarousel />
       
-      <p className="text-black text-sm font-bold mt-2 mb-8 italic">
-        Essas variedades de Roupas para todo gosto Feminino..
-      </p>
-
-      <div className="w-full space-y-4 text-left mt-8">
+      <div className="w-full space-y-4 text-left mt-12">
         {[
           "Fornecedores de roupas por até R$ 7,50",
           "Moda Luxo, Fitness, Preço Único, Pijamas, Lingerie, Infantil...",
@@ -232,40 +274,25 @@ const Features = () => (
           "Como investir pouco no início",
           "Acesso imediato por e-mail."
         ].map((item, i) => (
-          <div key={i} className="flex items-center gap-4 bg-white p-4 rounded-2xl shadow-sm border border-gray-200">
-            <div className="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-              <i className="fa-solid fa-check text-green-600"></i>
+          <div key={i} className="flex items-center gap-4 bg-[#1A1A1A] p-4 rounded-2xl shadow-sm border border-white/5">
+            <div className="flex-shrink-0 w-8 h-8 bg-[#EAB308]/20 rounded-full flex items-center justify-center">
+              <i className="fa-solid fa-check text-[#EAB308]"></i>
             </div>
-            <span className="font-bold text-gray-700">{item}</span>
+            <span className="font-bold text-gray-200">{item}</span>
           </div>
         ))}
       </div>
 
-      <div className="mt-16 mb-8">
-        <h3 className="text-2xl md:text-3xl font-black uppercase italic tracking-tight leading-tight mb-4">
+      <div className="mt-16 mb-4">
+        <h3 className="text-2xl md:text-3xl font-black uppercase italic tracking-tight leading-tight mb-4 text-white">
           Quem já comprou, <span className="text-[#EAB308]">recomenda!</span>
         </h3>
-        <p className="text-gray-600 text-sm font-bold italic">
+        <p className="text-gray-400 text-sm font-bold italic">
           Veja os resultados reais de quem já está faturando:
         </p>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-2 gap-4 mt-8">
-        {[
-          { src: "https://i.ibb.co/4q5bqDJ/Captura-de-tela-2025-10-12-140903.png", link: "https://ibb.co/DJSBJ6L" },
-          { src: "https://i.ibb.co/TMyTz7XG/Captura-de-tela-2025-10-12-140837.png", link: "https://ibb.co/tpRhyvf6" }
-        ].map((item, index) => (
-          <a key={index} href={item.link} target="_blank" rel="noopener noreferrer" className="block overflow-hidden rounded-[24px] shadow-xl border border-black/5 transition-all duration-300 hover:scale-[1.05] hover:shadow-2xl">
-            <img 
-              src={item.src} 
-              alt={`Resultado ${index + 1}`} 
-              className="w-full h-auto object-cover" 
-              loading="lazy"
-              decoding="async"
-            />
-          </a>
-        ))}
-      </div>
+      <TestimonialCarousel />
 
       <div className="mt-12 text-center px-4">
         <p className="text-xl md:text-2xl font-black italic tracking-tight leading-tight">
@@ -279,7 +306,18 @@ const Features = () => (
 const BonusSection = () => (
   <div className="bg-black text-white py-12">
     <Section className="text-center">
-      <h2 className="text-4xl font-black mb-2 italic tracking-tighter uppercase">BÔNUS EXCLUSIVO!</h2>
+      <div className="flex items-center justify-center gap-2 md:gap-4 mb-8">
+        <img 
+          src="https://i.ibb.co/XmgrdSR/vecteezy-ai-generated-red-gift-box-with-golden-bow-on-transparent-37796385.png" 
+          alt="Gift Box" 
+          className="w-24 h-24 md:w-40 md:h-40 object-contain animate-bounce"
+          referrerPolicy="no-referrer"
+        />
+        <h2 className="text-3xl md:text-6xl font-black italic tracking-tighter uppercase text-left leading-[0.9]">
+          BÔNUS <br />
+          <span className="text-white">EXCLUSIVO!</span>
+        </h2>
+      </div>
       <p className="mb-8 font-bold text-lg">Comprando agora você terá acesso a:</p>
       <div className="text-left space-y-6 text-base md:text-lg mb-10">
         <p>🎁 <b>BÔNUS 01</b> - Melhores fornecedores de Cosméticos.</p>
@@ -326,48 +364,37 @@ const BonusSection = () => (
 );
 
 const FounderBio = () => (
-  <div className="bg-white py-20 border-y border-gray-100">
+  <div className="bg-[#0A0A0A] py-20 border-y border-white/5">
     <Section className="flex flex-col items-center text-center">
-      <h2 className="text-3xl font-black italic mb-8 uppercase">Oi, eu sou a Gabrieli 👋</h2>
+      <h2 className="text-3xl font-black italic mb-2 uppercase text-white">Sobre a Fundadora 👋</h2>
+      <p className="text-[#EAB308] font-bold text-lg mb-8">Oii sou Gabrieli Saraiva</p>
       
-      <img 
-        src="https://i.ibb.co/mrRp3Tqv/Chat-GPT-Image-1-de-jan-de-2026-21-19-56.png" 
-        className="w-full max-w-[320px] rounded-2xl mb-10 border-4 border-[#EAB308]/20 shadow-xl"
-        alt="Gabrieli Fundadora"
-        loading="lazy"
-        decoding="async"
-      />
+      <div className="relative mb-10">
+        <div className="absolute inset-0 bg-[#EAB308]/10 blur-2xl rounded-full -z-10"></div>
+        <img 
+          src="https://i.ibb.co/5h6LdgvB/Chat-GPT-Image-1-de-jan-de-2026-21-19-56.png" 
+          className="w-full max-w-[280px] md:max-w-[320px] rounded-2xl border-4 border-[#EAB308]/20 shadow-2xl transform hover:scale-[1.02] transition-transform duration-500"
+          alt="Gabrieli Fundadora"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
       
-      <div className="text-gray-700 space-y-6 text-base md:text-lg leading-relaxed text-left max-w-md mx-auto">
-        <p>
-          Comecei a empreender em 2021, com apenas 17 anos, quando abri a minha loja online, a <span className="font-bold italic">ÒH! MARIA</span>.
+      <div className="text-gray-300 space-y-6 text-base md:text-lg leading-relaxed text-left max-w-md mx-auto">
+        <p className="italic border-l-4 border-[#EAB308] pl-4 py-2 bg-white/5 rounded-r-xl">
+          "Eu cansei de ver lojistas perdendo margem para atravessadores. Por isso, validei pessoalmente os contatos mais lucrativos de 2026 para que você não precise errar onde eu errei."
         </p>
-        <p>
-          Na época, tudo era na base da tentativa e erro. Passei noites garimpando fornecedores, tomei susto, perdi dinheiro... Mas também aprendi. e cresci.
-        </p>
-        <p>
-          Com o tempo, comecei a receber mensagens de outras mulheres querendo começar — mas travadas no mesmo ponto que eu:
-        </p>
-        <blockquote className="bg-gray-100 p-4 border-l-4 border-[#EAB308] rounded-r-xl italic font-semibold">
-          “Onde eu encontro fornecedor confiável?”
-        </blockquote>
-        <p>
-          💡 Foi aí que tive a ideia do <span className="text-[#EAB308] font-bold">Viva de roupas</span>.
-        </p>
-        <p>
-          Um lugar seguro, com fornecedores testados, informações organizadas, e tudo pronto pra facilitar a vida de quem quer começar com o pé direito.
-        </p>
-        <p className="font-bold">
+        <p className="font-bold text-white">
           Hoje, mais de 10 mil empreendedoras usam o Guia pra revender moda feminina com confiança.
         </p>
       </div>
 
       <a 
         href="https://pay.cakto.com.br/c9rruds_618312"
-        className="mt-12 cta-pulse bg-[#22C55E] hover:bg-[#16A34A] text-white font-bold py-5 px-10 rounded-full uppercase text-sm tracking-widest no-underline shadow-xl transition-all flex items-center gap-3">
+        className="mt-12 cta-pulse-orange bg-[#FF4D00] hover:bg-[#E64500] text-white font-bold py-5 px-10 rounded-full uppercase text-sm tracking-widest no-underline shadow-xl transition-all flex items-center gap-3">
         SIM! QUERO COMEÇAR AGORA <i className="fa-solid fa-arrow-right"></i>
       </a>
-      <p className="mt-4 text-[12px] font-bold text-gray-600 flex items-center justify-center gap-2">
+      <p className="mt-4 text-[12px] font-bold text-gray-500 flex items-center justify-center gap-2">
         <i className="fa-solid fa-envelope text-[#EAB308]"></i> Acesso imediato enviado para o seu e-mail após a confirmação.
       </p>
     </Section>
@@ -377,16 +404,16 @@ const FounderBio = () => (
 const FAQItem = ({ q, a }: { q: string, a: string, key?: React.Key }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+    <div className="bg-[#1A1A1A] rounded-2xl border border-white/5 shadow-sm overflow-hidden">
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors"
+        className="w-full p-6 text-left flex justify-between items-center hover:bg-white/5 transition-colors"
       >
-        <h3 className="font-bold text-gray-900 pr-4">{q}</h3>
+        <h3 className="font-bold text-gray-100 pr-4">{q}</h3>
         <i className={`fa-solid fa-chevron-down text-[#EAB308] transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}></i>
       </button>
       <div className={`px-6 transition-all duration-300 ease-in-out ${isOpen ? 'pb-6 max-h-96 opacity-100' : 'max-h-0 opacity-0 pointer-events-none'}`}>
-        <p className="text-sm text-gray-500 leading-relaxed">{a}</p>
+        <p className="text-sm text-gray-400 leading-relaxed">{a}</p>
       </div>
     </div>
   );
@@ -394,7 +421,7 @@ const FAQItem = ({ q, a }: { q: string, a: string, key?: React.Key }) => {
 
 const FAQ = () => (
   <Section className="py-20">
-    <h2 className="text-3xl font-black italic text-gray-900 mb-10 uppercase text-center">DÚVIDAS FREQUENTES</h2>
+    <h2 className="text-3xl font-black italic text-white mb-10 uppercase text-center">DÚVIDAS FREQUENTES</h2>
     <div className="space-y-4">
       {[
         { q: "Essa lista serve para quem nunca trabalhou com revenda?", a: "Sim. A lista é feita pra iniciantes que querem começar do zero." },
@@ -497,7 +524,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20 overflow-x-hidden text-gray-900 font-montserrat">
+    <div className="min-h-screen bg-[#0A0A0A] pb-20 overflow-x-hidden text-white font-montserrat">
       <StickyBar />
       <Hero />
       <Features />
@@ -509,37 +536,37 @@ export default function App() {
         ATENÇÃO: Desconto de 50% válido apenas para as próximas 24 horas!
       </div>
       
-      <div className="bg-[#F2F2F2] py-16 text-center border-y border-gray-200">
+      <div className="bg-[#111111] py-16 text-center border-y border-white/5">
         <div className="max-w-4xl mx-auto px-4 mb-10">
-          <h2 className="text-3xl font-black italic uppercase tracking-tighter mb-2">ESCOLHA SEU PACOTE</h2>
-          <p className="text-gray-600 font-bold text-sm mb-6">Aproveite a oferta antes que o tempo acabe:</p>
+          <h2 className="text-3xl font-black italic uppercase tracking-tighter mb-2 text-white">ESCOLHA SEU PACOTE</h2>
+          <p className="text-gray-400 font-bold text-sm mb-6">Aproveite a oferta antes que o tempo acabe:</p>
           <CountdownTimer />
         </div>
         
         <div className="flex flex-col gap-12 px-4 max-w-4xl mx-auto">
           {/* PACOTE BÁSICO / AGORA COM SUPER BONUS DINÂMICO */}
-          <div className={`max-w-sm mx-auto w-full bg-white rounded-[40px] p-8 shadow-lg border transition-all duration-700 transform ${basicDiscountUnlocked ? 'border-[#EAB308] scale-105 shadow-2xl' : 'border-black/10 hover:-translate-y-2'}`}>
+          <div className={`max-w-sm mx-auto w-full bg-[#1A1A1A] rounded-[40px] p-8 shadow-lg border transition-all duration-700 transform ${basicDiscountUnlocked ? 'border-[#EAB308] scale-105 shadow-2xl' : 'border-white/5 hover:-translate-y-2'}`}>
             {basicDiscountUnlocked && (
               <div className="bg-red-600 text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest mb-4 animate-bounce inline-block">🎁 SUPER BÔNUS LIBERADO!</div>
             )}
             
-            <h3 className={`font-black text-xl mb-4 tracking-tighter ${basicDiscountUnlocked ? 'text-red-600' : ''}`}>
+            <h3 className={`font-black text-xl mb-4 tracking-tighter ${basicDiscountUnlocked ? 'text-red-600' : 'text-white'}`}>
               {basicDiscountUnlocked ? 'PACOTE PLUS!' : 'PACOTE BÁSICO'}
             </h3>
             
             <div className="mb-6">
-              <p className="text-xs line-through text-gray-400">
+              <p className="text-xs line-through text-gray-500">
                 De: R$ {basicDiscountUnlocked ? '37,00' : '47,00'}
               </p>
               <div className="flex items-center justify-center gap-1">
-                <span className="font-bold text-lg self-start mt-2">R$</span>
-                <p className={`text-5xl font-black transition-all duration-500 ${basicDiscountUnlocked ? 'text-[#EAB308]' : ''}`}>
+                <span className="font-bold text-lg self-start mt-2 text-gray-400">R$</span>
+                <p className={`text-5xl font-black transition-all duration-500 ${basicDiscountUnlocked ? 'text-[#EAB308]' : 'text-white'}`}>
                   {basicDiscountUnlocked ? '24,90' : '14,90'}
                 </p>
               </div>
             </div>
 
-            <ul className="text-left space-y-4 mb-8 text-sm font-bold text-gray-600">
+            <ul className="text-left space-y-4 mb-8 text-sm font-bold text-gray-400">
               <li className="flex items-center gap-2">
                 <i className={`fa-solid fa-check ${basicDiscountUnlocked ? 'text-[#EAB308]' : 'text-green-500'}`}></i> 
                 {basicDiscountUnlocked ? 'Acesso a TODO CONTEÚDO + BÔNUS🎁' : 'Acesso à lista completa'}
@@ -558,7 +585,7 @@ export default function App() {
             <a 
               href={basicDiscountUnlocked ? "https://pay.cakto.com.br/fwvadyt" : "https://pay.cakto.com.br/c9rruds_618312"} 
               onClick={handleBasicClick}
-              className={`block w-full text-white font-black py-5 rounded-2xl transition-all uppercase tracking-tight no-underline ${basicDiscountUnlocked ? 'bg-[#22C55E] cta-pulse shadow-[0_4px_0_rgb(22,101,52)]' : 'bg-[#22C55E] shadow-[0_4px_0_rgb(22,101,52)] active:translate-y-1 active:shadow-none'}`}>
+              className={`block w-full text-white font-black py-5 rounded-2xl transition-all uppercase tracking-tight no-underline ${basicDiscountUnlocked ? 'bg-[#FF4D00] cta-pulse-orange shadow-xl' : 'bg-[#FF4D00] shadow-xl active:translate-y-1 active:shadow-none'}`}>
               SIM! QUERO COMEÇAR AGORA
             </a>
             
@@ -568,24 +595,24 @@ export default function App() {
           </div>
 
           {/* PACOTE COMPLETO */}
-          <div className="max-w-sm mx-auto w-full bg-white rounded-[40px] p-8 shadow-2xl border-[4px] border-[#EAB308] relative transform transition-all hover:-translate-y-2">
+          <div className="max-w-sm mx-auto w-full bg-[#1A1A1A] rounded-[40px] p-8 shadow-2xl border-[4px] border-[#EAB308] relative transform transition-all hover:-translate-y-2">
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-red-600 text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest">🔥 MAIS VENDIDO</div>
             <h3 className="font-black text-xl mb-4 text-[#EAB308] tracking-tighter">PACOTE COMPLETO</h3>
             <div className="mb-6">
-              <p className="text-xs line-through text-gray-400">De: R$ 97,00</p>
+              <p className="text-xs line-through text-gray-500">De: R$ 97,00</p>
               <div className="flex items-center justify-center gap-1">
-                <span className="font-bold text-lg self-start mt-2">R$</span>
-                <p className="text-5xl font-black">37,00</p>
+                <span className="font-bold text-lg self-start mt-2 text-gray-400">R$</span>
+                <p className="text-5xl font-black text-white">37,00</p>
               </div>
             </div>
-            <ul className="text-left space-y-4 mb-8 text-sm font-bold text-gray-600">
+            <ul className="text-left space-y-4 mb-8 text-sm font-bold text-gray-400">
               <li className="flex items-start gap-2"><span>🎁</span> <span><b>BÔNUS 01</b> - Melhores fornecedores de Cosméticos.</span></li>
               <li className="flex items-start gap-2"><span>🎁</span> <span><b>BÔNUS 02</b> - Fornecedores para Loja de Preço Único.</span></li>
               <li className="flex items-start gap-2"><span>🎁</span> <span><b>BÔNUS 03</b> - Melhores fornecedores de SEMI-JOIAS.</span></li>
               <li className="flex items-start gap-2"><span>🎁</span> <span><b>BÔNUS 04</b> - Pack de Figurinhas para Story da sua Loja.</span></li>
               <li className="flex items-start gap-2"><span>🚀</span> <span><b>SUPER BÔNUS 05</b> - Aulas Exclusivas para Planejar sua Loja</span></li>
             </ul>
-            <a href="https://pay.cakto.com.br/c9rruds_618312" className="cta-pulse block w-full bg-[#22C55E] text-white font-black py-5 rounded-2xl shadow-[0_4px_0_rgb(22,101,52)] active:translate-y-1 active:shadow-none transition-all uppercase tracking-tight no-underline">SIM! QUERO COMEÇAR AGORA</a>
+            <a href="https://pay.cakto.com.br/c9rruds_618312" className="cta-pulse-orange block w-full bg-[#FF4D00] text-white font-black py-5 rounded-2xl shadow-xl active:translate-y-1 active:shadow-none transition-all uppercase tracking-tight no-underline">SIM! QUERO COMEÇAR AGORA</a>
             <p className="mt-4 text-[10px] font-bold text-gray-500 flex items-center justify-center gap-2">
               <i className="fa-solid fa-envelope text-[#EAB308]"></i> Acesso imediato enviado para o seu e-mail após a confirmação.
             </p>
@@ -599,17 +626,17 @@ export default function App() {
         </div>
 
         {/* Guarantee Section Below Pricing Cards */}
-        <div className="mt-16 max-w-xl mx-auto px-6 text-left bg-white/50 p-8 rounded-[40px] border border-gray-200 shadow-sm">
-          <h4 className="font-black text-gray-900 mb-6 flex items-center gap-3 text-lg leading-tight">
+        <div className="mt-16 max-w-xl mx-auto px-6 text-left bg-white/5 p-8 rounded-[40px] border border-white/10 shadow-sm">
+          <h4 className="font-black text-white mb-6 flex items-center gap-3 text-lg leading-tight">
             <span className="text-xl">🔒</span> Política de Devolução – Garantia de 7 Dias
           </h4>
-          <div className="text-sm text-gray-600 space-y-4 font-semibold leading-relaxed">
+          <div className="text-sm text-gray-400 space-y-4 font-semibold leading-relaxed">
             <p>Nós confiamos no que entregamos.</p>
             <p>Por isso, você tem 7 dias de garantia incondicional, conforme o Código de Defesa do Consumidor.</p>
             <p>
               <span className="text-lg">👉</span> Se dentro desse prazo você achar que o material não é para você, basta solicitar o reembolso e devolvemos 100% do valor pago.
             </p>
-            <p className="text-gray-900 font-bold italic">Sem perguntas. Sem enrolação.</p>
+            <p className="text-white font-bold italic">Sem perguntas. Sem enrolação.</p>
             <p>O acesso é digital e imediato, e o reembolso é feito pelo mesmo meio de pagamento utilizado.</p>
           </div>
         </div>
@@ -618,10 +645,10 @@ export default function App() {
       <FAQ />
 
       {/* Footer */}
-      <footer className="bg-gray-50 border-t border-gray-200 py-12 px-6 text-center">
+      <footer className="bg-[#0A0A0A] border-t border-white/5 py-12 px-6 text-center">
         <div className="max-w-xl mx-auto">
           <Logo className="opacity-30 scale-75 mb-6" />
-          <p className="text-[10px] text-gray-400 font-black uppercase tracking-widest">© 2026 Viva de Roupas. Todos os direitos reservados.</p>
+          <p className="text-[10px] text-gray-500 font-black uppercase tracking-widest">© 2026 Viva de Roupas. Todos os direitos reservados.</p>
         </div>
       </footer>
     </div>

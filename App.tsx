@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 // --- COMPONENTES AUXILIARES ---
 
 const Section = ({ children, className = "", id }: { children?: React.ReactNode, className?: string, id?: string }) => (
-  <section id={id} className={`max-w-xl mx-auto px-6 py-8 ${className}`}>
+  <section id={id} className={`max-w-6xl mx-auto px-6 py-16 md:py-24 ${className}`}>
     {children}
   </section>
 );
@@ -218,30 +218,45 @@ const TestimonialCarousel = () => {
 // --- SEÇÕES PRINCIPAIS ---
 
 const Hero = () => (
-  <Section className="text-center pt-6 md:pt-20">
-    <div className="flex justify-center mb-12">
+  <Section className="text-center md:text-left pt-6 md:pt-20">
+    <div className="flex justify-center md:justify-start mb-12">
       <Logo />
     </div>
     
-    <div className="max-w-4xl mx-auto">
-      <h1 className="text-[28px] md:text-[52px] font-bold leading-[1.3] mb-6 uppercase text-white tracking-tight">
-        COMECE SUA PRÓPRIA LOJA HOJE MESMO COM O ESTOQUE MAIS LUCRATIVO DO MERCADO E LUCRE MAIS DE <span className="text-[#FF4D00] font-black">300%</span>
-      </h1>
-      <p className="text-[17px] md:text-[24px] font-normal text-gray-300 leading-[1.6] mb-8 max-w-2xl mx-auto">
-        Tenha acesso direto aos maiores fornecedores do Brasil com peças a partir de <span className="text-[#EAB308] font-black">R$ 7,50</span>.
-      </p>
-      
-      <div className="flex flex-col items-center">
-        <a 
-           href="https://pay.cakto.com.br/c9rruds_618312"
-           className="cta-pulse-orange bg-[#FF4D00] hover:bg-[#E64500] text-white font-extrabold py-5 px-8 md:py-6 md:px-10 rounded-xl shadow-[0_10px_30px_rgba(255,77,0,0.3)] transition-all w-full md:w-auto inline-flex items-center justify-center gap-3 no-underline mb-6 text-lg md:text-2xl uppercase tracking-tighter">
-          QUERO ACESSAR OS FABRICANTES <i className="fa-solid fa-arrow-right"></i>
-        </a>
+    <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+      <div className="flex-1">
+        <h1 className="text-[28px] md:text-[48px] font-black leading-[1.2] mb-6 uppercase text-white tracking-tight font-montserrat">
+          COMECE SUA PRÓPRIA LOJA HOJE MESMO COM O ESTOQUE MAIS LUCRATIVO DO MERCADO E LUCRE MAIS DE <span className="text-[#FF8C00]">300%</span>.
+        </h1>
+        <p className="text-[17px] md:text-[20px] font-medium text-gray-300 leading-[1.6] mb-8">
+          Tenha acesso direto aos maiores fornecedores do Brasil com peças a partir de <span className="text-[#FF8C00] font-bold">R$ 7,50</span>. Tudo verificado para 2026.
+        </p>
         
-        <div className="text-center">
-          <p className="text-[12px] md:text-[13px] font-bold text-gray-500 flex items-center justify-center gap-2">
-            <i className="fa-solid fa-shield-halved text-[#EAB308]"></i> Acesso imediato enviado para o seu e-mail após a confirmação.
-          </p>
+        <div className="flex flex-col items-center md:items-start">
+          <a 
+             href="https://pay.cakto.com.br/c9rruds_618312"
+             className="bg-[#25D366] hover:bg-[#20bd5b] text-white font-black py-5 px-8 md:py-6 md:px-10 rounded-2xl shadow-[0_10px_30px_rgba(37,211,102,0.3)] transition-all w-full md:w-auto inline-flex items-center justify-center gap-3 no-underline mb-6 text-lg md:text-xl uppercase tracking-tighter">
+            QUERO ACESSAR OS FORNECEDORES AGORA <i className="fa-solid fa-arrow-right"></i>
+          </a>
+          
+          <div className="text-center md:text-left">
+            <p className="text-[12px] md:text-[13px] font-bold text-gray-500 flex items-center justify-center md:justify-start gap-2">
+              <i className="fa-solid fa-shield-halved text-[#25D366]"></i> Acesso imediato enviado para o seu e-mail após a confirmação.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex-1 flex justify-center">
+        <div className="relative">
+          <div className="absolute inset-0 bg-[#25D366]/10 blur-3xl rounded-full -z-10"></div>
+          <img 
+            src="https://i.ibb.co/WvsY9JdW/Chat-GPT-Image-29-de-dez-de-2025-23-01-26.png" 
+            alt="Gabrieli Fundadora"
+            className="w-full max-w-[320px] md:max-w-[450px] rounded-[32px] shadow-2xl border-4 border-white"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
     </div>
@@ -284,8 +299,8 @@ const Features = () => (
       </div>
 
       <div className="mt-16 mb-4">
-        <h3 className="text-2xl md:text-3xl font-black uppercase italic tracking-tight leading-tight mb-4 text-white">
-          Quem já comprou, <span className="text-[#EAB308]">recomenda!</span>
+        <h3 className="text-2xl md:text-3xl font-black italic tracking-tight leading-tight mb-4 text-white">
+          Olha esses <span className="text-[#EAB308] uppercase">DEPOIMENTOS!</span>
         </h3>
         <p className="text-gray-400 text-sm font-bold italic">
           Veja os resultados reais de quem já está faturando:
@@ -372,8 +387,8 @@ const FounderBio = () => (
       <div className="relative mb-10">
         <div className="absolute inset-0 bg-[#EAB308]/10 blur-2xl rounded-full -z-10"></div>
         <img 
-          src="https://i.ibb.co/5h6LdgvB/Chat-GPT-Image-1-de-jan-de-2026-21-19-56.png" 
-          className="w-full max-w-[280px] md:max-w-[320px] rounded-2xl border-4 border-[#EAB308]/20 shadow-2xl transform hover:scale-[1.02] transition-transform duration-500"
+          src="https://i.ibb.co/WvsY9JdW/Chat-GPT-Image-29-de-dez-de-2025-23-01-26.png" 
+          className="w-full max-w-[280px] md:max-w-[320px] rounded-2xl border-4 border-white shadow-2xl transform hover:scale-[1.02] transition-transform duration-500"
           alt="Gabrieli Fundadora"
           loading="lazy"
           decoding="async"
@@ -524,7 +539,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] pb-20 overflow-x-hidden text-white font-montserrat">
+    <div className="min-h-screen bg-[#121212] pb-20 overflow-x-hidden text-white font-inter">
       <StickyBar />
       <Hero />
       <Features />
@@ -612,7 +627,7 @@ export default function App() {
               <li className="flex items-start gap-2"><span>🎁</span> <span><b>BÔNUS 04</b> - Pack de Figurinhas para Story da sua Loja.</span></li>
               <li className="flex items-start gap-2"><span>🚀</span> <span><b>SUPER BÔNUS 05</b> - Aulas Exclusivas para Planejar sua Loja</span></li>
             </ul>
-            <a href="https://pay.cakto.com.br/c9rruds_618312" className="cta-pulse-orange block w-full bg-[#FF4D00] text-white font-black py-5 rounded-2xl shadow-xl active:translate-y-1 active:shadow-none transition-all uppercase tracking-tight no-underline">SIM! QUERO COMEÇAR AGORA</a>
+            <a href="https://pay.cakto.com.br/c9rruds_618312" className="cta-pulse-green block w-full bg-[#22C55E] text-white font-black py-5 rounded-2xl shadow-xl active:translate-y-1 active:shadow-none transition-all uppercase tracking-tight no-underline">SIM! QUERO COMEÇAR AGORA</a>
             <p className="mt-4 text-[10px] font-bold text-gray-500 flex items-center justify-center gap-2">
               <i className="fa-solid fa-envelope text-[#EAB308]"></i> Acesso imediato enviado para o seu e-mail após a confirmação.
             </p>

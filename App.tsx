@@ -247,17 +247,20 @@ const Hero = () => (
         </div>
       </div>
 
-      <div className="flex-1 flex justify-center">
-        <div className="relative">
+      <div className="flex-1 flex flex-col items-center justify-center">
+        <div className="relative mb-4">
           <div className="absolute inset-0 bg-[#25D366]/10 blur-3xl rounded-full -z-10"></div>
           <img 
-            src="https://i.ibb.co/PZMLyPy6/esse-foi-inicio-de-tudo.png" 
+            src="https://i.ibb.co/dwqy29Dw/Gemini-Generated-Image-wqyhrywqyhrywqyh.png" 
             alt="Gabrieli Fundadora"
             className="w-full max-w-[320px] md:max-w-[450px] rounded-[32px] shadow-2xl border-4 border-white"
             loading="lazy"
             decoding="async"
           />
         </div>
+        <p className="text-white text-sm md:text-base font-medium italic opacity-90 text-center max-w-[300px] md:max-w-[400px]">
+          E foi assim que comecei minha loja de casa mesmo...
+        </p>
       </div>
     </div>
   </Section>
@@ -387,7 +390,7 @@ const FounderBio = () => (
       <div className="relative mb-10">
         <div className="absolute inset-0 bg-[#EAB308]/10 blur-2xl rounded-full -z-10"></div>
         <img 
-          src="https://i.ibb.co/WvsY9JdW/Chat-GPT-Image-29-de-dez-de-2025-23-01-26.png" 
+          src="https://i.ibb.co/v20JM82/Gemini-Generated-Image-7wiy257wiy257wiy.png" 
           className="w-full max-w-[280px] md:max-w-[320px] rounded-2xl border-4 border-white shadow-2xl transform hover:scale-[1.02] transition-transform duration-500"
           alt="Gabrieli Fundadora"
           loading="lazy"

@@ -314,7 +314,7 @@ const Features = () => (
 
       <div className="mt-12 text-center px-4">
         <p className="text-xl md:text-2xl font-black italic tracking-tight leading-tight">
-          A Próxima pode ser você... Eai? bora <span className="text-[#EAB308] uppercase">VIVER DE ROUPAS !!</span>
+          A Próxima pode ser você... Eai? bora <span className="text-[#EAB308] uppercase">VIVER DE ROUPAS MULHER !!</span>
         </p>
       </div>
     </Section>
@@ -385,9 +385,8 @@ const FounderBio = () => (
   <div className="bg-[#0A0A0A] py-20 border-y border-white/5">
     <Section className="flex flex-col items-center text-center">
       <h2 className="text-3xl font-black italic mb-2 uppercase text-white">Sobre a Fundadora 👋</h2>
-      <p className="text-[#EAB308] font-bold text-lg mb-8">Oii sou Gabrieli Saraiva</p>
       
-      <div className="relative mb-10">
+      <div className="relative mb-10 mt-8">
         <div className="absolute inset-0 bg-[#EAB308]/10 blur-2xl rounded-full -z-10"></div>
         <img 
           src="https://i.ibb.co/v20JM82/Gemini-Generated-Image-7wiy257wiy257wiy.png" 
@@ -398,18 +397,24 @@ const FounderBio = () => (
         />
       </div>
       
-      <div className="text-gray-300 space-y-6 text-base md:text-lg leading-relaxed text-left max-w-md mx-auto">
-        <p className="italic border-l-4 border-[#EAB308] pl-4 py-2 bg-white/5 rounded-r-xl">
-          "Eu cansei de ver lojistas perdendo margem para atravessadores. Por isso, validei pessoalmente os contatos mais lucrativos de 2026 para que você não precise errar onde eu errei."
+      <div className="text-gray-300 space-y-6 text-sm md:text-base leading-relaxed text-center max-w-2xl mx-auto font-inter">
+        <p className="text-white font-medium">
+          Oii, eu sou a Gabrieli Saraiva. Comecei minha loja em casa, com apenas <span className="text-[#FF8C00] font-bold">R$ 150,00</span> e muito medo. Mas a minha fé e perseverança foram maiores, e me trouxeram até aqui.
         </p>
-        <p className="font-bold text-white">
-          Hoje, mais de 10 mil empreendedoras usam o Guia pra revender moda feminina com confiança.
+        <p>
+          E quer saber? Você também pode! Chega de adiar o seu sonho. Deixe o medo de lado e <span className="text-[#FF8C00] font-bold uppercase">COMECE HOJE MESMO</span> a construir o seu futuro!
         </p>
+        
+        <div className="pt-6">
+          <p className="italic border-l-4 border-[#FF8C00] pl-4 py-2 bg-white/5 rounded-r-xl text-left">
+            "Eu cansei de ver lojistas perdendo margem para atravessadores. Por isso, validei pessoalmente os contatos mais lucrativos de 2026 para que você não precise errar onde eu errei."
+          </p>
+        </div>
       </div>
 
       <a 
         href="https://pay.cakto.com.br/c9rruds_618312"
-        className="mt-12 cta-pulse-orange bg-[#FF4D00] hover:bg-[#E64500] text-white font-bold py-5 px-10 rounded-full uppercase text-sm tracking-widest no-underline shadow-xl transition-all flex items-center gap-3">
+        className="mt-12 cta-pulse-orange bg-[#FF4D00] hover:bg-[#E64500] text-white font-black py-5 px-10 rounded-full uppercase text-sm tracking-widest no-underline shadow-xl transition-all flex items-center gap-3">
         SIM! QUERO COMEÇAR AGORA <i className="fa-solid fa-arrow-right"></i>
       </a>
       <p className="mt-4 text-[12px] font-bold text-gray-500 flex items-center justify-center gap-2">

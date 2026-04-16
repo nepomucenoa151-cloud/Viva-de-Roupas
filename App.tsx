@@ -235,8 +235,8 @@ const Hero = () => (
         <div className="flex flex-col items-center md:items-start">
           <a 
              href="https://pay.cakto.com.br/c9rruds_618312"
-             className="bg-[#25D366] hover:bg-[#20bd5b] text-white font-black py-5 px-8 md:py-6 md:px-10 rounded-2xl shadow-[0_10px_30px_rgba(37,211,102,0.3)] transition-all w-full md:w-auto inline-flex items-center justify-center gap-3 no-underline mb-6 text-lg md:text-xl uppercase tracking-tighter">
-            QUERO ACESSAR OS FORNECEDORES AGORA <i className="fa-solid fa-arrow-right"></i>
+             className="bg-[#2ECC71] hover:bg-[#27ae60] text-white font-black py-5 px-8 md:py-6 md:px-10 rounded-2xl shadow-[0_10px_30px_rgba(46,204,113,0.3)] transition-all w-full md:w-auto inline-flex items-center justify-center gap-3 no-underline mb-6 text-lg md:text-xl uppercase tracking-tighter">
+            SIM! QUERO COMEÇAR MINHA LOJA <i className="fa-solid fa-arrow-right"></i>
           </a>
           
           <div className="text-center md:text-left">
@@ -399,10 +399,7 @@ const FounderBio = () => (
       
       <div className="text-gray-300 space-y-6 text-sm md:text-base leading-relaxed text-center max-w-2xl mx-auto font-inter">
         <p className="text-white font-medium">
-          Oii, eu sou a Gabrieli Saraiva. Comecei minha loja em casa, com apenas <span className="text-[#FF8C00] font-bold">R$ 150,00</span> e muito medo. Mas a minha fé e perseverança foram maiores, e me trouxeram até aqui.
-        </p>
-        <p>
-          E quer saber? Você também pode! Chega de adiar o seu sonho. Deixe o medo de lado e <span className="text-[#FF8C00] font-bold uppercase">COMECE HOJE MESMO</span> a construir o seu futuro!
+          Oii, eu sou a Gabrieli Saraiva. Comecei a minha loja em casa com apenas <span className="text-[#FF8C00] font-bold">R$ 150,00</span> e muito medo. Mas a minha fé e perseverança trouxeram-me até aqui. E quer saber? Você também pode!
         </p>
         
         <div className="pt-6">
@@ -414,8 +411,8 @@ const FounderBio = () => (
 
       <a 
         href="https://pay.cakto.com.br/c9rruds_618312"
-        className="mt-12 cta-pulse-orange bg-[#FF4D00] hover:bg-[#E64500] text-white font-black py-5 px-10 rounded-full uppercase text-sm tracking-widest no-underline shadow-xl transition-all flex items-center gap-3">
-        SIM! QUERO COMEÇAR AGORA <i className="fa-solid fa-arrow-right"></i>
+        className="mt-12 bg-[#2ECC71] hover:bg-[#27ae60] text-white font-black py-5 px-10 rounded-full uppercase text-sm tracking-widest no-underline shadow-[0_10px_30px_rgba(46,204,113,0.3)] transition-all flex items-center gap-3">
+        SIM! QUERO COMEÇAR MINHA LOJA <i className="fa-solid fa-arrow-right"></i>
       </a>
       <p className="mt-4 text-[12px] font-bold text-gray-500 flex items-center justify-center gap-2">
         <i className="fa-solid fa-envelope text-[#EAB308]"></i> Acesso imediato enviado para o seu e-mail após a confirmação.
@@ -608,8 +605,8 @@ export default function App() {
             <a 
               href={basicDiscountUnlocked ? "https://pay.cakto.com.br/fwvadyt" : "https://pay.cakto.com.br/c9rruds_618312"} 
               onClick={handleBasicClick}
-              className={`block w-full text-white font-black py-5 rounded-2xl transition-all uppercase tracking-tight no-underline ${basicDiscountUnlocked ? 'bg-[#FF4D00] cta-pulse-orange shadow-xl' : 'bg-[#FF4D00] shadow-xl active:translate-y-1 active:shadow-none'}`}>
-              SIM! QUERO COMEÇAR AGORA
+              className={`block w-full text-white font-black py-5 rounded-2xl transition-all uppercase tracking-tight no-underline ${basicDiscountUnlocked ? 'bg-[#2ECC71] shadow-[0_10px_30px_rgba(46,204,113,0.3)]' : 'bg-[#2ECC71] shadow-[0_10px_30px_rgba(46,204,113,0.3)] active:translate-y-1 active:shadow-none'}`}>
+              SIM! QUERO COMEÇAR MINHA LOJA
             </a>
             
             <p className="mt-4 text-[10px] font-bold text-gray-500 flex items-center justify-center gap-2">
@@ -635,7 +632,7 @@ export default function App() {
               <li className="flex items-start gap-2"><span>🎁</span> <span><b>BÔNUS 04</b> - Pack de Figurinhas para Story da sua Loja.</span></li>
               <li className="flex items-start gap-2"><span>🚀</span> <span><b>SUPER BÔNUS 05</b> - Aulas Exclusivas para Planejar sua Loja</span></li>
             </ul>
-            <a href="https://pay.cakto.com.br/c9rruds_618312" className="cta-pulse-green block w-full bg-[#22C55E] text-white font-black py-5 rounded-2xl shadow-xl active:translate-y-1 active:shadow-none transition-all uppercase tracking-tight no-underline">SIM! QUERO COMEÇAR AGORA</a>
+            <a href="https://pay.cakto.com.br/c9rruds_618312" className="block w-full bg-[#2ECC71] text-white font-black py-5 rounded-2xl shadow-[0_10px_30px_rgba(46,204,113,0.3)] active:translate-y-1 active:shadow-none transition-all uppercase tracking-tight no-underline">SIM! QUERO COMEÇAR MINHA LOJA</a>
             <p className="mt-4 text-[10px] font-bold text-gray-500 flex items-center justify-center gap-2">
               <i className="fa-solid fa-envelope text-[#EAB308]"></i> Acesso imediato enviado para o seu e-mail após a confirmação.
             </p>

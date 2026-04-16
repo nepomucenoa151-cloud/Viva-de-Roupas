@@ -251,7 +251,7 @@ const Hero = () => (
         <div className="relative">
           <div className="absolute inset-0 bg-[#25D366]/10 blur-3xl rounded-full -z-10"></div>
           <img 
-            src="https://i.ibb.co/WvsY9JdW/Chat-GPT-Image-29-de-dez-de-2025-23-01-26.png" 
+            src="https://i.ibb.co/PZMLyPy6/esse-foi-inicio-de-tudo.png" 
             alt="Gabrieli Fundadora"
             className="w-full max-w-[320px] md:max-w-[450px] rounded-[32px] shadow-2xl border-4 border-white"
             loading="lazy"
@@ -282,7 +282,7 @@ const Features = () => (
       <div className="w-full space-y-4 text-left mt-12">
         {[
           "Fornecedores de roupas por até R$ 7,50",
-          "Moda Luxo, Fitness, Preço Único, Pijamas, Lingerie, Infantil...",
+          "Moda Luxo, Fitness, Moda modesta, Pijamas, Lingerie, Infantil e plus size",
           "Fornecedores sem limite de compra mínima",
           "Como começar do ZERO!",
           "Estratégia de como Vender",

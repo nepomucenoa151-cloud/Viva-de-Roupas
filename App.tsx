@@ -250,13 +250,16 @@ const Hero = () => (
       <div className="flex-1 flex flex-col items-center justify-center">
         <div className="relative mb-4">
           <div className="absolute inset-0 bg-[#25D366]/10 blur-3xl rounded-full -z-10"></div>
-          <img 
-            src="https://i.ibb.co/dwqy29Dw/Gemini-Generated-Image-wqyhrywqyhrywqyh.png" 
-            alt="Gabrieli Fundadora"
-            className="w-full max-w-[320px] md:max-w-[450px] rounded-[32px] shadow-2xl border-4 border-white"
-            loading="lazy"
-            decoding="async"
-          />
+          <div className="w-full max-w-[320px] md:max-w-[450px] aspect-[9/16] rounded-[32px] overflow-hidden border-4 border-white shadow-2xl">
+            <iframe 
+              src="https://www.youtube.com/embed/RrFKH0OhsZE?autoplay=1&mute=1&loop=1&playlist=RrFKH0OhsZE&controls=0&modestbranding=1&rel=0"
+              className="w-full h-full"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            ></iframe>
+          </div>
         </div>
         <p className="text-white text-sm md:text-base font-medium italic opacity-90 text-center max-w-[300px] md:max-w-[400px]">
           E foi assim que comecei minha loja de casa mesmo...

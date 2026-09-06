@@ -81,36 +81,139 @@ const ImageCarousel = () => {
 };
 
 const StickyBar = () => {
-  const [timeLeft, setTimeLeft] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const saved = sessionStorage.getItem('viva_timer');
-      return saved ? parseInt(saved, 10) : 15 * 60;
-    }
-    return 15 * 60;
-  });
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        const next = prev > 0 ? prev - 1 : 15 * 60;
-        if (typeof window !== 'undefined') {
-          sessionStorage.setItem('viva_timer', next.toString());
-        }
-        return next;
-      });
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  const getFormattedDate = () => {
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    return `${day}/${month}`;
   };
 
+  const [currentDate, setCurrentDate] = useState(getFormattedDate);
+
+  useEffect(() => {
+    const updateDate = () => {
+      setCurrentDate(getFormattedDate());
+    };
+    updateDate();
+    // Atualiza a cada 60s para garantir virada de data
+    const interval = setInterval(updateDate, 60000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="sticky top-0 z-[100] bg-red-600 text-white py-2 px-4 text-center font-black text-xs md:hidden shadow-lg border-b border-white/20">
-      ⚠️ OFERTA EXPIRA EM: <span className="font-mono text-sm">{formatTime(timeLeft)}</span>
+    <>
+      <aside 
+        id="tarjeta-topo-oferta"
+        aria-label="Alerta de oferta do dia"
+        className="fixed top-0 inset-x-0 z-[100] bg-red-600 text-white py-2.5 px-4 text-center font-black text-xs md:text-sm uppercase tracking-wide shadow-md border-b border-red-700/60 flex items-center justify-center gap-2"
+      >
+        <span>🔥</span>
+        <span>OFERTA ATÉ HOJE {currentDate || '06/09'} - APROVEITA</span>
+        <span>🔥</span>
+      </aside>
+      <div className="h-9 md:h-10 w-full" aria-hidden="true" />
+    </>
+  );
+};
+
+const BUYERS_LIST = [
+  { name: "Mariana S.", city: "São Paulo, SP", time: "agora mesmo" },
+  { name: "Camila R.", city: "Belo Horizonte, MG", time: "há 1 minuto" },
+  { name: "Beatriz Lima", city: "Goiânia, GO", time: "agora mesmo" },
+  { name: "Larissa F.", city: "Curitiba, PR", time: "há 2 minutos" },
+  { name: "Jéssica M.", city: "Rio de Janeiro, RJ", time: "agora mesmo" },
+  { name: "Ana Paula D.", city: "Campinas, SP", time: "há 3 minutos" },
+  { name: "Fernanda Oliveira", city: "Fortaleza, CE", time: "agora mesmo" },
+  { name: "Bruna Santos", city: "Salvador, BA", time: "há 1 minuto" },
+  { name: "Letícia P.", city: "Brasília, DF", time: "agora mesmo" },
+  { name: "Juliana K.", city: "Recife, PE", time: "há 2 minutos" },
+  { name: "Patrícia V.", city: "Porto Alegre, RS", time: "agora mesmo" },
+  { name: "Renata Costa", city: "Florianópolis, SC", time: "há 4 minutos" },
+  { name: "Amanda Souza", city: "Manaus, AM", time: "agora mesmo" },
+  { name: "Vanessa Martins", city: "Vitória, ES", time: "há 2 minutos" },
+  { name: "Carla Nogueira", city: "Natal, RN", time: "agora mesmo" },
+  { name: "Daniela Rocha", city: "Ribeirão Preto, SP", time: "há 3 minutos" },
+];
+
+const PurchaseNotification = () => {
+  const [buyerIndex, setBuyerIndex] = useState(0);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    // Primeira notificação aparece rapidamente após entrar (1.5s)
+    const initialShow = setTimeout(() => {
+      setVisible(true);
+    }, 1500);
+
+    const initialHide = setTimeout(() => {
+      setVisible(false);
+    }, 5500);
+
+    // Ciclo constante a cada 9 segundos alternando os compradores
+    const interval = setInterval(() => {
+      setBuyerIndex((prev) => (prev + 1) % BUYERS_LIST.length);
+      setVisible(true);
+
+      setTimeout(() => {
+        setVisible(false);
+      }, 4500);
+    }, 9000);
+
+    return () => {
+      clearTimeout(initialShow);
+      clearTimeout(initialHide);
+      clearInterval(interval);
+    };
+  }, []);
+
+  const currentBuyer = BUYERS_LIST[buyerIndex];
+
+  return (
+    <div 
+      id="notificacao-compra-topo"
+      className={`fixed top-12 md:top-14 left-3 right-3 md:left-auto md:right-6 z-[95] max-w-[340px] md:max-w-[370px] mx-auto md:mx-0 transition-all duration-500 ease-out transform ${
+        visible 
+          ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto' 
+          : 'opacity-0 -translate-y-4 scale-95 pointer-events-none'
+      }`}
+    >
+      <div className="bg-[#181818]/95 backdrop-blur-md border border-[#EAB308]/40 shadow-[0_12px_35px_rgba(0,0,0,0.7)] rounded-2xl p-3.5 flex items-start gap-3">
+        <div className="w-10 h-10 rounded-full bg-[#2ECC71]/20 border border-[#2ECC71]/40 flex items-center justify-center text-[#2ECC71] flex-shrink-0 mt-0.5 shadow-sm">
+          <i className="fa-solid fa-bag-shopping text-base"></i>
+        </div>
+        
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center justify-between gap-1">
+            <p className="text-xs font-black text-white truncate">
+              {currentBuyer.name}
+            </p>
+            <span className="text-[10px] text-gray-400 font-medium whitespace-nowrap">
+              {currentBuyer.time}
+            </span>
+          </div>
+          
+          <p className="text-[11px] text-gray-300 font-medium leading-tight mt-0.5">
+            de <span className="text-white font-bold">{currentBuyer.city}</span>
+          </p>
+          
+          <div className="mt-1.5 flex items-center gap-1.5 flex-wrap">
+            <span className="text-[11px] font-black text-[#2ECC71] flex items-center gap-1">
+              <i className="fa-solid fa-circle-check text-[10px]"></i> Comprou o
+            </span>
+            <span className="text-[11px] font-black text-[#EAB308] uppercase tracking-tight bg-[#EAB308]/15 px-1.5 py-0.5 rounded border border-[#EAB308]/30">
+              PACOTE COMPLETO 🔥
+            </span>
+          </div>
+        </div>
+
+        <button 
+          onClick={() => setVisible(false)}
+          className="text-gray-500 hover:text-white p-1 text-xs -mr-1 -mt-1 transition-colors"
+          aria-label="Fechar notificação"
+        >
+          <i className="fa-solid fa-xmark"></i>
+        </button>
+      </div>
     </div>
   );
 };
@@ -557,6 +660,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#121212] pb-20 overflow-x-hidden text-white font-inter">
       <StickyBar />
+      <PurchaseNotification />
       <Hero />
       <Features />
       <BonusSection />

@@ -596,8 +596,8 @@ export default function App() {
       }
 
       // STRICT INITIALIZATION as requested
-      w.fbq('set', 'autoConfig', true, '985004507149963'); 
-      w.fbq('init', '985004507149963');
+      w.fbq('set', 'autoConfig', true, '1914262629314918'); 
+      w.fbq('init', '1914262629314918');
       w.fbq('track', 'PageView');
 
       // --- ADVANCED TRACKING SCRIPT INTEGRATION ---

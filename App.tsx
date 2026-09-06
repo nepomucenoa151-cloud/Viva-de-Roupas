@@ -234,8 +234,12 @@ const Hero = () => (
         
         <div className="flex flex-col items-center md:items-start">
           <a 
-             href="https://pay.cakto.com.br/c9rruds_618312"
-             className="bg-[#2ECC71] hover:bg-[#27ae60] text-white font-black py-5 px-[10px] md:px-10 rounded-2xl shadow-[0_10px_30px_rgba(46,204,113,0.3)] transition-all w-[90%] max-w-[350px] md:w-auto inline-flex items-center justify-center gap-3 no-underline mb-6 text-[14px] md:text-xl uppercase tracking-tighter whitespace-nowrap">
+             href="#pacotes"
+             onClick={(e) => {
+               e.preventDefault();
+               document.getElementById('pacotes')?.scrollIntoView({ behavior: 'smooth' });
+             }}
+             className="bg-[#2ECC71] hover:bg-[#27ae60] text-white font-black py-5 px-[10px] md:px-10 rounded-2xl shadow-[0_10px_30px_rgba(46,204,113,0.3)] transition-all w-[90%] max-w-[350px] md:w-auto inline-flex items-center justify-center gap-3 no-underline mb-6 text-[14px] md:text-xl uppercase tracking-tighter whitespace-nowrap cursor-pointer">
             SIM! QUERO COMEÇAR MINHA LOJA <i className="fa-solid fa-arrow-right"></i>
           </a>
           
@@ -413,8 +417,12 @@ const FounderBio = () => (
       </div>
 
       <a 
-        href="https://pay.cakto.com.br/c9rruds_618312"
-        className="mt-12 bg-[#2ECC71] hover:bg-[#27ae60] text-white font-black py-5 px-10 rounded-full uppercase text-sm tracking-widest no-underline shadow-[0_10px_30px_rgba(46,204,113,0.3)] transition-all flex items-center gap-3">
+        href="#pacotes"
+        onClick={(e) => {
+          e.preventDefault();
+          document.getElementById('pacotes')?.scrollIntoView({ behavior: 'smooth' });
+        }}
+        className="mt-12 bg-[#2ECC71] hover:bg-[#27ae60] text-white font-black py-5 px-10 rounded-full uppercase text-sm tracking-widest no-underline shadow-[0_10px_30px_rgba(46,204,113,0.3)] transition-all flex items-center gap-3 cursor-pointer">
         SIM! QUERO COMEÇAR MINHA LOJA <i className="fa-solid fa-arrow-right"></i>
       </a>
       <p className="mt-4 text-[12px] font-bold text-gray-500 flex items-center justify-center gap-2">
@@ -555,7 +563,7 @@ export default function App() {
       <FounderBio />
 
       {/* Pricing Section */}
-      <div className="bg-red-600 text-white py-4 px-6 text-center font-black uppercase italic tracking-tighter text-sm md:text-base">
+      <div id="pacotes" className="bg-red-600 text-white py-4 px-6 text-center font-black uppercase italic tracking-tighter text-sm md:text-base scroll-mt-14">
         ATENÇÃO: Desconto de 50% válido apenas para as próximas 24 horas!
       </div>
       
